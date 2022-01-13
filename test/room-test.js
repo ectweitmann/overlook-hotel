@@ -25,5 +25,10 @@ describe('Room', () => {
       expect(room.number).to.be.deep.equal(1);
     });
 
+    it('should have a room type', () => {
+      expect(room.type).to.be.a('String');
+      expect(room.type).to.deep.equal('residential suite');
+    });
+
   });
 });
