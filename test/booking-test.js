@@ -28,6 +28,10 @@ describe('Booking', () => {
     it('should have a userID', () => {
       expect(booking.userID).to.be.a('Number');
     });
-    
+
+    it('should have a date', () => {
+      expect(booking.date).to.be.an('String');
+      expect(booking.date).to.deep.equal('2022/04/22');
+    });
   });
 });
