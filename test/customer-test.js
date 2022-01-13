@@ -26,6 +26,10 @@ describe('Customer', () => {
   it('should have a name', () => {
     expect(customer.name).to.be.a('String');
     expect(customer.name).to.deep.equal('Leatha Ullrich');
-  })
+  });
+
+  it('should keep track of its bookings', () => {
+    expect(customer.bookings).to.be.an('Array');
+  });
 
 });
