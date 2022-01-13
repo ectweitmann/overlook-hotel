@@ -16,11 +16,9 @@ describe('Room', () => {
       expect(Room).to.be.a('function');
     });
 
-  });
+    it('should be an instantiation of Room', () => {
+     expect(room).to.be.an.instanceof(Room);
+   });
 
-  describe('Methods', () => {
-
-    it('should have methods', () => {
-    });
   });
 });
