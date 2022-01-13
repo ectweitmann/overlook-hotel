@@ -18,7 +18,12 @@ describe('Room', () => {
 
     it('should be an instantiation of Room', () => {
      expect(room).to.be.an.instanceof(Room);
-   });
+    });
+
+    it('should have a room number', () => {
+      expect(room.number).to.be.a('Number');
+      expect(room.number).to.be.deep.equal(1);
+    });
 
   });
 });
