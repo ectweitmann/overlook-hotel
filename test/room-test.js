@@ -12,9 +12,10 @@ describe('Room', () => {
       room = new Room(roomTestData.rooms[0]);
     });
 
-    it('should have properties', () => {
-
+    it('should be a function', () => {
+      expect(Room).to.be.a('function');
     });
+
   });
 
   describe('Methods', () => {
