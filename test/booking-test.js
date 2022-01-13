@@ -19,6 +19,11 @@ describe('Booking', () => {
     it('should be an instantiation of Booking', () => {
       expect(booking).to.be.an.instanceof(Booking);
     });
+
+    it('should have an id', () => {
+      expect(booking.id).to.be.a('String');
+      expect(booking.id).to.be.deep.equal("5fwrgu4i7k55hl6sz");
+    });
     
   });
 });
