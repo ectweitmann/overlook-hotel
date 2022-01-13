@@ -15,6 +15,10 @@ describe('Booking', () => {
     it('should be a function', () => {
       expect(Booking).to.be.a('function');
     });
+
+    it('should be an instantiation of Booking', () => {
+      expect(booking).to.be.an.instanceof(Booking);
+    });
     
   });
 });
