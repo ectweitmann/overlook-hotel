@@ -5,7 +5,7 @@ import roomTestData from '../src/testing-data/room-test-data';
 
 describe('Room', () => {
   let room;
-  let room2
+  let room2;
 
   describe('Properties', () => {
 
@@ -19,7 +19,7 @@ describe('Room', () => {
     });
 
     it('should be an instantiation of Room', () => {
-     expect(room).to.be.an.instanceof(Room);
+      expect(room).to.be.an.instanceof(Room);
     });
 
     it('should have a room number', () => {
@@ -36,6 +36,11 @@ describe('Room', () => {
       expect(room.hasBidet).to.be.a('Boolean');
       expect(room.hasBidet).to.deep.equal(true);
       expect(room2.hasBidet).to.deep.equal(false);
+    });
+
+    it('should have a bed size', () => {
+      expect(room.bedSize).to.be.a('String');
+      expect(room.bedSize).to.deep.equal('queen');
     });
 
   });
