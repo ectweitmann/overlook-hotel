@@ -12,5 +12,9 @@ describe('Booking', () => {
       booking = new Booking(bookingTestData.bookings[0]);
     });
 
+    it('should be a function', () => {
+      expect(Booking).to.be.a('function');
+    });
+    
   });
 });
