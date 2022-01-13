@@ -21,6 +21,11 @@ describe('Customer', () => {
   it('should have an id', () => {
     expect(customer.id).to.be.a('Number');
     expect(customer.id).to.be.deep.equal(1);
+  });
+
+  it('should have a name', () => {
+    expect(customer.name).to.be.a('String');
+    expect(customer.name).to.deep.equal('Leatha Ullrich');
   })
 
 });
