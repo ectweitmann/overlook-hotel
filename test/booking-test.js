@@ -33,5 +33,9 @@ describe('Booking', () => {
       expect(booking.date).to.be.an('String');
       expect(booking.date).to.deep.equal('2022/04/22');
     });
+
+    it('should have a room number', () => {
+      expect(booking.roomNumber).to.deep.equal(15);
+    });
   });
 });
