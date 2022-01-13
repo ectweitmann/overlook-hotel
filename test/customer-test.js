@@ -8,10 +8,14 @@ describe('Customer', () => {
 
   beforeEach(() => {
     customer = new Customer(customers[0]);
-  })
+  });
 
   it('should be a function', () => {
     expect(Customer).to.be.a('function');
+  });
+
+  it('should be an instantiation of Customer', () => {
+    expect(customer).to.be.an.instanceof(Customer);
   });
 
 });
