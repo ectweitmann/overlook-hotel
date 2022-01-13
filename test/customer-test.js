@@ -1,13 +1,13 @@
 import chai from 'chai';
 const expect = chai.expect;
 import Customer from '../src/classes/Customer';
-import customers from '../src/testing-data/customer-test-data';
+import customerTestData from '../src/testing-data/customer-test-data';
 
 describe('Customer', () => {
   let customer;
 
   beforeEach(() => {
-    customer = new Customer(customers[0]);
+    customer = new Customer(customerTestData.customers[0]);
   });
 
   it('should be a function', () => {
@@ -17,5 +17,10 @@ describe('Customer', () => {
   it('should be an instantiation of Customer', () => {
     expect(customer).to.be.an.instanceof(Customer);
   });
+
+  it('should have an id', () => {
+    expect(customer.id).to.be.a('Number');
+    expect(customer.id).to.be.deep.equal(1);
+  })
 
 });
