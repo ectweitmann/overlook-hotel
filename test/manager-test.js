@@ -36,6 +36,9 @@ describe('Manager', () => {
       expect(manager.hotel).to.be.an.instanceof(Hotel);
     });
 
+    it('should begin not assisting any customer', () => {
+      expect(manager.selectedCustomer).to.deep.equal(null);
+    });
   });
 
   describe('Methods', () => {
