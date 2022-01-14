@@ -44,6 +44,10 @@ describe('Hotel', () => {
       expect(hotel.bookedRooms.length).to.deep.equal(5);
     });
 
+    it('should begin with no available rooms', () => {
+      expect(hotel.availableRooms).to.be.an('Array');
+      expect(hotel.availableRooms.length).to.deep.equal(0);
+    });
   });
 
   describe('Methods', () => {
