@@ -32,6 +32,10 @@ describe('Manager', () => {
       expect(manager).to.be.an.instanceof(Manager);
     });
 
+    it('should have a hotel they manage', () => {
+      expect(manager.hotel).to.be.an.instanceof(Hotel);
+    });
+
   });
 
   describe('Methods', () => {
