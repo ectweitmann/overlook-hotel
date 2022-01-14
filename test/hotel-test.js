@@ -23,6 +23,10 @@ describe('Hotel', () => {
     it('should be a function', () => {
       expect(Hotel).to.be.a('function');
     });
+
+    it('should be an instantiation of Hotel', () => {
+      expect(hotel).to.be.an.instanceof(Hotel);
+    });
     
   });
 
