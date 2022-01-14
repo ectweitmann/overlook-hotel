@@ -63,7 +63,7 @@ describe('Hotel', () => {
     });
 
     it('should be able to determine the total cost of a user\'s bookings', () => {
-      let totalCost = hotel.calculateMonetaryAmount(hotel.guests[0].id);
+      let totalCost = hotel.calculateRevenue(hotel.guests[0].id);
 
       expect(totalCost).to.deep.equal(817.55);
     });
@@ -83,7 +83,7 @@ describe('Hotel', () => {
     });
 
     it('should be able to determine revenue for the present date', () => {
-      let revenue = hotel.calculateMonetaryAmount('2022/04/22');
+      let revenue = hotel.calculateRevenue('2022/04/22');
 
       expect(revenue).to.deep.equal(1128.01);
     });
