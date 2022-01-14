@@ -24,6 +24,10 @@ describe('Manager', () => {
 
   describe('Properties', () => {
 
+    it('should be a function', () => {
+      expect(Manager).to.be.a('function');
+    });
+    
   });
 
   describe('Methods', () => {
