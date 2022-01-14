@@ -27,7 +27,11 @@ describe('Manager', () => {
     it('should be a function', () => {
       expect(Manager).to.be.a('function');
     });
-    
+
+    it('should be an instantiation of Manager', () => {
+      expect(manager).to.be.an.instanceof(Manager);
+    });
+
   });
 
   describe('Methods', () => {
