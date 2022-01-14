@@ -68,5 +68,12 @@ describe('Hotel', () => {
       expect(totalCost).to.deep.equal(817.55);
     });
 
+    it('should be able to filter available rooms by room type', () => {
+      hotel.determineAvailableRooms('2022/04/22');
+      let filteredListOfAvailableRooms = hotel.filterByRoomType('suite');
+
+      expect(filteredListOfAvailableRooms).to.deep.equal([roomTestData.rooms[1]]);
+    });
+
   });
 });
