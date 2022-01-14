@@ -35,7 +35,7 @@ describe('Booking', () => {
     });
 
     it('should have a room number', () => {
-      expect(booking.roomNumber).to.deep.equal(15);
+      expect(booking.roomNumber).to.deep.equal(1);
     });
   });
 });
