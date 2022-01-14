@@ -28,14 +28,14 @@ describe('Room', () => {
     });
 
     it('should have a room type', () => {
-      expect(room.type).to.be.a('String');
-      expect(room.type).to.deep.equal('residential suite');
+      expect(room.roomType).to.be.a('String');
+      expect(room.roomType).to.deep.equal('residential suite');
     });
 
     it('should or should not have a bidet', () => {
-      expect(room.hasBidet).to.be.a('Boolean');
-      expect(room.hasBidet).to.deep.equal(true);
-      expect(room2.hasBidet).to.deep.equal(false);
+      expect(room.bidet).to.be.a('Boolean');
+      expect(room.bidet).to.deep.equal(true);
+      expect(room2.bidet).to.deep.equal(false);
     });
 
     it('should have a bed size', () => {
