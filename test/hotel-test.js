@@ -52,6 +52,15 @@ describe('Hotel', () => {
 
   describe('Methods', () => {
 
+    it('should be able to determine available rooms on a given date', () => {
+      hotel.determineAvailableRooms('2022/04/22');
+
+      expect(hotel.availableRooms.length).to.deep.equal(2);
+      expect(hotel.availableRooms).to.deep.equal([
+        roomTestData.rooms[1],
+        roomTestData.rooms[2]
+      ]);
+    });
 
   });
 });
