@@ -1,15 +1,26 @@
 import chai from 'chai';
 const expect = chai.expect;
 import Customer from '../src/classes/Customer';
+import Hotel from '../src/classes/Hotel';
+import Room from '../src/classes/Room';
+import Booking from '../src/classes/Booking';
 import customerTestData from '../src/testing-data/customer-test-data';
+import bookingTestData from '../src/testing-data/booking-test-data';
+import roomTestData from '../src/testing-data/room-test-data';
 
 describe('Customer', () => {
   let customer;
+  let hotel;
 
   describe('Properties', () => {
 
     beforeEach(() => {
       customer = new Customer(customerTestData.customers[0]);
+      hotel = new Hotel(
+        roomTestData.rooms,
+        bookingTestData.bookings,
+        customerTestData.costumers
+      );
     });
 
     it('should be a function', () => {
@@ -41,7 +52,27 @@ describe('Customer', () => {
 
   describe('Methods', () => {
 
-    it('should have methods', () => {
+    it('should be to get a list of their hotel bookings', () => {
+      customer.getBookings(hotel);
+
+      expect(customer.bookings.length).to.deep.equal(2);
+      expect(customer.bookings).to.deep.equal([
+        {
+          id: "5fwrgu4i7k55hl6x8",
+          userID: 1,
+          date: "2022/05/22",
+          roomNumber: 2,
+          roomType: 'suite'
+        },
+        {
+          id: '5fwrgu4i7k55hl6t8',
+          userID: 1,
+          date: '2022/01/22',
+          roomNumber: 5,
+          roomType: 'single room'
+        }
+      ]);
     });
+
   });
 });
