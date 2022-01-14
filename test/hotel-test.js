@@ -75,5 +75,12 @@ describe('Hotel', () => {
       expect(filteredListOfAvailableRooms).to.deep.equal([roomTestData.rooms[1]]);
     });
 
+    it('should be able to determine the percentage of rooms occupied presently', () => {
+      hotel.determineAvailableRooms('2022/04/22');
+      let occupancy = hotel.determineOccupancy('2022/04/22');
+
+      expect(occupancy).to.deep.equal('%60.00');
+    });
+
   });
 });
