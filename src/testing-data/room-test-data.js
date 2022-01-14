@@ -22,7 +22,23 @@ const rooms = [
     "bedSize": "king",
     "numBeds": 1,
     "costPerNight": 491.14
-  }
+  },
+  {
+    "number": 4,
+    "roomType": "single room",
+    "bidet": false,
+    "bedSize": "queen",
+    "numBeds": 1,
+    "costPerNight": 429.44
+  },
+  {
+    "number": 5,
+    "roomType": "single room",
+    "bidet": true,
+    "bedSize": "queen",
+    "numBeds": 2,
+    "costPerNight": 340.17
+  },
 ];
 
 export default {rooms};
