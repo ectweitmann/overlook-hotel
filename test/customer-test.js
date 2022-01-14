@@ -12,16 +12,16 @@ describe('Customer', () => {
   let customer;
   let hotel;
 
-  describe('Properties', () => {
+  beforeEach(() => {
+    customer = new Customer(customerTestData.customers[0]);
+    hotel = new Hotel(
+      roomTestData.rooms,
+      bookingTestData.bookings,
+      customerTestData.costumers
+    );
+  });
 
-    beforeEach(() => {
-      customer = new Customer(customerTestData.customers[0]);
-      hotel = new Hotel(
-        roomTestData.rooms,
-        bookingTestData.bookings,
-        customerTestData.costumers
-      );
-    });
+  describe('Properties', () => {
 
     it('should be a function', () => {
       expect(Customer).to.be.a('function');
