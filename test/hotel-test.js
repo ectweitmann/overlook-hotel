@@ -13,7 +13,7 @@ describe('Hotel', () => {
   beforeEach(() => {
     hotel = new Hotel(
       roomTestData.rooms,
-      bookingTestData.bookings.map(booking => new Booking(booking)),
+      bookingTestData.bookings,
       customerTestData.customers
     );
   });
@@ -37,6 +37,11 @@ describe('Hotel', () => {
       expect(hotel.allRooms).to.be.an('Array');
       expect(hotel.allRooms.length).to.be.deep.equal(5);
       expect(hotel.allRooms[0]).to.be.an.instanceof(Room);
+    });
+
+    it('should have a list of booked rooms', () => {
+      expect(hotel.bookedRooms).to.be.an('Array');
+      expect(hotel.bookedRooms.length).to.deep.equal(5);
     });
 
   });
