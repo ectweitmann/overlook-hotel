@@ -27,6 +27,11 @@ describe('Hotel', () => {
     it('should be an instantiation of Hotel', () => {
       expect(hotel).to.be.an.instanceof(Hotel);
     });
+
+    it('should have a list of all guests', () => {
+      expect(hotel.guests).to.be.an('Array');
+      expect(hotel.guests.length).to.deep.equal(3);
+    });
     
   });
 
