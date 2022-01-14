@@ -20,11 +20,14 @@ describe('Hotel', () => {
 
   describe('Properties', () => {
 
-
+    it('should be a function', () => {
+      expect(Hotel).to.be.a('function');
+    });
+    
   });
 
   describe('Methods', () => {
 
-    
+
   });
 });
