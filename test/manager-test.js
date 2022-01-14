@@ -17,7 +17,7 @@ describe('Manager', () => {
     hotel = new Hotel(
       roomTestData.rooms,
       bookingTestData.bookings,
-      customerTestData.costumers
+      customerTestData.customers
     );
     manager = new Manager(hotel);
   });
@@ -43,8 +43,10 @@ describe('Manager', () => {
 
   describe('Methods', () => {
 
-    it('should have methods', () => {
+    it('should be able to select a customer profile to view', () => {
+      manager.selectCustomer('Leatha Ullrich');
 
+      expect(manager.selectedCustomer).to.be.an.instanceof(Customer);
     });
   });
 });
