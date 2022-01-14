@@ -17,7 +17,7 @@ class Hotel {
     });
   }
 
-  calculateMonetaryAmount(parameter) {
+  calculateRevenue(parameter) {
     let key = Number.isInteger(parameter) ? 'userID' : 'date';
     let filteredRoomNums = this.bookedRooms.reduce((roomNums, currentBooking) => {
       currentBooking[key] === parameter && roomNums.push(currentBooking.roomNumber);
