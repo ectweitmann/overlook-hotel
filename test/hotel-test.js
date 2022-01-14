@@ -62,5 +62,11 @@ describe('Hotel', () => {
       ]);
     });
 
+    it('should be able to determine the total cost of a user\'s bookings', () => {
+      let totalCost = hotel.calculateCostumersTotalCost(hotel.guests[0].id);
+
+      expect(totalCost).to.deep.equal(817.55);
+    });
+
   });
 });
