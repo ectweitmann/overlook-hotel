@@ -1,7 +1,13 @@
-/* This is an example of how to import a partial scss file*/
 @import './_reset';
 @import './_variables';
 @import './_mixins';
+
+button {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  cursor: pointer;
+}
 
 * {
   font-family: $font;
@@ -29,6 +35,7 @@ a {
 h2,
 a,
 .book-now,
+.confirm-booking
  {
   font-size: xx-large;
 }
@@ -65,13 +72,54 @@ main {
   margin-left: 1%;
 }
 
+.booking-info {
+  @include flexBox(column, space-between, none);
+  @include dimensions(25%, 95%);
+}
+
 .panel-right-side {
   @include flexBox(column, space-around, flex-start);
   @include dimensions(100%, 58%);
 }
 
-.panel-title {
+.panel-title,
+.section-title {
   font-size: x-large;
+}
+
+.panel-right-bottom {
+  @include flexBox(row, space-between, flex-end);
+  @include dimensions(none, 95%);
+}
+
+.available-room {
+
+  &:hover {
+    border-bottom: 5px solid $accent-color;
+  }
+
+  &:focus {
+    outline-color: $accent-color;
+    outline-width: 5px;
+    outline-style: solid;
+  }
+}
+
+.room-amenities {
+  text-align: left;
+}
+
+li::before {
+  content: '+ ';
+}
+
+.price {
+  font-size: xx-large;
+  margin-bottom: -10px;
+}
+
+.price-label {
+  text-align: right;
 }
 
 .main-column-right {
@@ -94,6 +142,12 @@ nav {
   }
 }
 
+.current-view {
+  color: #999999;
+  cursor: default;
+  pointer-events: none;
+}
+
 .main-column-right-sections-container {
   @include flexBox(column, space-between, none);
   @include dimensions(100%, none);
@@ -111,6 +165,10 @@ nav {
   .cost-wrapper {
     @include flexBox(row, space-between, none);
   }
+
+  .input-wrapper {
+    @include flexBox(row, space-around, none);
+  }
 }
 
 .cost-label {
@@ -122,29 +180,68 @@ nav {
   color: black;
 }
 
+.date-wrapper,
+.dropdown-wrapper {
+  @include flexBox(column, none, none);
+}
+
+.input-date,
+.input-room-type {
+  @include dimensions(40px, 250px);
+  @include borderRadius($radius-pixels);
+  border: 1px solid;
+  text-align: center;
+  font-size: large;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid $accent-color;
+  }
+}
+
+.input-room-type {
+  height: 44px;
+}
+
 .prompt-button-container {
   @include flexBox(column, center, center);
   @include dimensions(65%, 100%);
 
   .prompt-button-wrapper {
-    @include flexBox(column, space-around, center);
+    @include flexBox(column, space-evenly, center);
     @include dimensions(100%, 100%);
   }
+}
+
+.prompt-background {
+  box-sizing: border-box;
+  border: 5px dotted $accent-color;
+  @include borderRadius($radius-pixels);
 }
 
 .greeting,
 .prompt {
   color: $main-font-color;
   text-shadow: $shadow;
-  text-align: left;
-  font-size: 60px;
+  text-align: center;
+  font-size: 50px;
+}
+
+.prompt {
+  padding: 0px 10px;
 }
 
 .greeting {
   margin: 0px;
 }
 
-.book-now {
+span {
+  text-decoration: underline;
+  text-decoration-color: $accent-color;
+}
+
+.book-now,
+.confirm-booking {
   @include dimensions(80px, 280px);
   @include borderRadius($radius-pixels);
   background: $accent-color;
@@ -152,7 +249,6 @@ nav {
   color: $main-font-color;
   font-weight: 500;
   text-shadow: $shadow;
-  cursor: pointer;
 
   &:hover {
     border: 3px solid white;
@@ -160,12 +256,6 @@ nav {
   }
 }
 
-.current-view {
-  color: #999999;
-  cursor: default;
-  pointer-events: none;
-}
-
 .hidden {
-  display: hidden;
+  display: none !important;
 }
