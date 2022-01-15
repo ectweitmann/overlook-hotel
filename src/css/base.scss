@@ -1,4 +1,3 @@
-/* This is an example of how to import a partial scss file*/
 @import './_reset';
 @import './_variables';
 @import './_mixins';
@@ -73,6 +72,11 @@ main {
   margin-left: 1%;
 }
 
+.booking-info {
+  @include flexBox(column, space-between, none);
+  @include dimensions(25%, 95%);
+}
+
 .panel-right-side {
   @include flexBox(column, space-around, flex-start);
   @include dimensions(100%, 58%);
@@ -81,6 +85,41 @@ main {
 .panel-title,
 .section-title {
   font-size: x-large;
+}
+
+.panel-right-bottom {
+  @include flexBox(row, space-between, flex-end);
+  @include dimensions(none, 95%);
+}
+
+.available-room {
+
+  &:hover {
+    border-bottom: 5px solid $accent-color;
+  }
+
+  &:focus {
+    outline-color: $accent-color;
+    outline-width: 5px;
+    outline-style: solid;
+  }
+}
+
+.room-amenities {
+  text-align: left;
+}
+
+li::before {
+  content: '+ ';
+}
+
+.price {
+  font-size: xx-large;
+  margin-bottom: -10px;
+}
+
+.price-label {
+  text-align: right;
 }
 
 .main-column-right {
@@ -101,6 +140,12 @@ nav {
     padding: 0px 15px;
     cursor: default;
   }
+}
+
+.current-view {
+  color: #999999;
+  cursor: default;
+  pointer-events: none;
 }
 
 .main-column-right-sections-container {
@@ -157,6 +202,7 @@ nav {
 .input-room-type {
   height: 44px;
 }
+
 .prompt-button-container {
   @include flexBox(column, center, center);
   @include dimensions(65%, 100%);
@@ -189,6 +235,11 @@ nav {
   margin: 0px;
 }
 
+span {
+  text-decoration: underline;
+  text-decoration-color: $accent-color;
+}
+
 .book-now,
 .confirm-booking {
   @include dimensions(80px, 280px);
@@ -203,57 +254,6 @@ nav {
     border: 3px solid white;
     transform: scale(1.01);
   }
-}
-
-.current-view {
-  color: #999999;
-  cursor: default;
-  pointer-events: none;
-}
-
-span {
-  text-decoration: underline;
-  text-decoration-color: $accent-color;
-}
-
-.panel-right-bottom {
-  @include flexBox(row, space-between, flex-end);
-  @include dimensions(none, 95%);
-}
-
-.price {
-  font-size: xx-large;
-  margin-bottom: -10px;
-}
-
-.price-label {
-  text-align: right;
-}
-
-.available-room {
-
-  &:hover {
-    border-bottom: 5px solid $accent-color;
-  }
-
-  &:focus {
-    outline-color: $accent-color;
-    outline-width: 5px;
-    outline-style: solid;
-  }
-}
-
-.room-amenities {
-  text-align: left;
-}
-
-li::before {
-  content: '+ ';
-}
-
-.booking-info {
-  @include flexBox(column, space-between, none);
-  @include dimensions(25%, 95%);
 }
 
 .hidden {
