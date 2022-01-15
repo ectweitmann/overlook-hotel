@@ -28,12 +28,12 @@
         <section class="main-column-right-sections-container">
           <section class="cost-info-container">
             <p class="section-title" id="panelTitleRC">Price Summary</p>
-            <section class="cost-wrapper hidden" id="dashboardCost">
+            <section class="cost-wrapper" id="dashboardCost">
               <p class="cost-label">Total Cost of Bookings</p>
-              <p class="cost">$917.26</p>
+              <p class="cost" id="customerCost">$917.26</p>
             </section>
             <!-- Bookings View // Hidden in Dashboard -->
-            <section class="input-wrapper" id="bookingInputFields">
+            <section class="input-wrapper hidden" id="bookingInputFields">
               <section class="date-wrapper">
                 <label for="calendar">Check-in date:</label>
                 <input type="date" class="input-date" id="calendar">
@@ -55,7 +55,7 @@
           <section class="prompt-button-container">
             <section class="prompt-button-wrapper prompt-background">
               <section id="promptSection">
-                <p class="greeting">Hello Ethan!</p>
+                <p class="greeting" id="customerGreeting">Hello Ethan!</p>
                 <p class="prompt">Plan your next trip:</p>
               </section>
               <button class='book-now' id="buttonDashboard" aria-label="go to bookings page">Book Now</button>
