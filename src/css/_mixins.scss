@@ -1,0 +1,15 @@
+@mixin flexBox($direction, $axisX, $axisY) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $axisX;
+  align-items: $axisY;
+}
+
+@mixin dimensions($unitH, $unitW) {
+  height: $unitH;
+  width: $unitW;
+}
+
+@mixin borderRadius($pixels) {
+  border-radius: $pixels
+}
