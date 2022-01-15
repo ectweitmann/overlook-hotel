@@ -15,25 +15,35 @@
     </header>
     <main>
       <section class="main-column-left">
-        <h2>Your Bookings</h2>
-        <section class="your-bookings-container">
+        <h2 id="listTitle">Your Bookings</h2>
+        <section class="your-bookings-container" id="scrollSection">
 
-          <section class="panel">
+          <button class="panel available-room">
             <img class="booking-image" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
             <section class="panel-right-side">
               <p class="panel-title">Suite</p>
-              <section>
-                <p>Room: 27</p>
-                <p>Jan 13, 2022</p>
+              <section class="panel-right-bottom">
+                <section class="room-amenities">
+                  <p>Room: 27</p>
+                  <p>Amenities:</p>
+                  <ul>
+                    <li>Bidet</li>
+                    <li>1 Queen bed(s)</li>
+                  </ul>
+                </section>
+                <section>
+                  <p class="price">$358.40</p>
+                  <p class="price-label">per night</p>
+                </section>
               </section>
             </section>
-          </section>
+          </button>
 
           <section class="panel">
             <img class="booking-image" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
             <section class="panel-right-side">
               <p class="panel-title">Junior Suite</p>
-              <section>
+              <section class="booking-info">
                 <p>Room: 27</p>
                 <p>Jan 13, 2022</p>
               </section>
@@ -78,25 +88,49 @@
       </section>
       <section class="main-column-right">
         <nav>
-          <a class="link current-view" role="link" aria-label="go to dashboard page" >Dashboard</a>
+          <a class="link current-view" id="navDashboard" role="link" aria-label="go to dashboard page" >Dashboard</a>
           <h2 class="separator" aria-hidden="true"> | </h2>
-          <a class="link" aria-label="go to bookings page" role="link">Bookings</a>
+          <a class="link" id="navBooking" aria-label="go to bookings page" role="link">Bookings</a>
         </nav>
         <section class="main-column-right-sections-container">
           <section class="cost-info-container">
-            <p class="panel-title">Price Summary</p>
-            <section class="cost-wrapper">
+            <p class="section-title" id="panelTitleRC">Price Summary</p>
+            <section class="cost-wrapper hidden" id="dashboardCost">
               <p class="cost-label">Total Cost of Bookings</p>
               <p class="cost">$917.26</p>
             </section>
+            <!-- Bookings View -->
+            <section class="input-wrapper" id="bookingInputFields">
+              <section class="date-wrapper">
+                <label for="calendar">Check-in date:</label>
+                <input type="date" class="input-date" id="calendar">
+              </section>
+              <section class="dropdown-wrapper">
+                <label for="roomType">Filter by room type:</label>
+                <select name="roomTypes" class="input-room-type" id="roomType" required>
+                  <option value="" disabled selected>--Select a room type--</option>
+                  <option value="junior suite">Junior suite</option>
+                  <option value="residential suite">Residential suite</option>
+                  <option value="single room">Single room</option>
+                  <option value="suite">Suite</option>
+                  <option value="any">Any room type</option>
+                </select>
+              </section>
+            </section>
+            <!-- End Bookings View -->
           </section>
           <section class="prompt-button-container">
-            <section class="prompt-button-wrapper">
-              <section>
-                <p class="greeting">Hello Ethan,</p>
-                <p class="prompt">Plan your next trip!</p>
+            <section class="prompt-button-wrapper prompt-background">
+              <section id="promptSection">
+                <p class="greeting">Hello Ethan!</p>
+                <p class="prompt">Plan your next trip:</p>
+                <!-- Booking View / Prompt / No room selected yet -->
+                <p class="prompt hidden" id="promptSelect">Select a room you'd like to book.</p>
+                <!-- Booking View / Prompt / Confirm room to be booked -->
+                <p class="prompt hidden" id="promptConfirm">Would you like to book <span>Room 27</span>?</p>
               </section>
-              <button class='book-now' aria-label="go to bookings page">Book Now</button>
+              <button class='book-now' id="buttonDashboard" aria-label="go to bookings page">Book Now</button>
+              <button class='confirm-booking hidden' id="buttonConfirmBooking" aria-label="confirm booking for selected room">Confirm</button>
             </section>
           </section>
         </section>
