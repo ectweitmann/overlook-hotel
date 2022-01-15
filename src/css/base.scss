@@ -1,6 +1,171 @@
 /* This is an example of how to import a partial scss file*/
-@import '_variables';
+@import './_reset';
+@import './_variables';
+@import './_mixins';
+
+* {
+  font-family: $font;
+}
 
 body {
-  background: $primary-background;
+  @include flexBox(column, space-around, center);
+  @include dimensions(100vh, 100%);
+  background-image: url('../images/overlook-view.png');
+  background-size: $full100 $full100;
+}
+
+h1 {
+  font-family: $font;
+  font-size: xxx-large;
+  transform: translateY(10px);
+}
+
+h1,
+h2,
+a {
+  color: $main-font-color;
+}
+
+h2,
+a,
+.book-now,
+ {
+  font-size: xx-large;
+}
+
+
+main {
+  @include flexBox(row, space-evenly, center);
+  @include dimensions(90%, 90%);
+}
+
+.main-column-left {
+  @include dimensions(80%, 45%);
+}
+
+.your-bookings-container {
+  position: relative;
+  @include flexBox(column, none, none);
+  @include dimensions(92%, 100%);
+  overflow-y: scroll;
+  transform: translateY(10px);
+}
+
+.panel {
+  @include flexBox(row, space-between, center);
+  @include dimensions(30%, none);
+  @include borderRadius($radius-pixels);
+  background: $section-background-color;
+  margin-bottom: 3%;
+}
+
+.booking-image {
+  @include dimensions(95%, 220px);
+  @include borderRadius($radius-pixels);
+  margin-left: 1%;
+}
+
+.panel-right-side {
+  @include flexBox(column, space-around, flex-start);
+  @include dimensions(100%, 58%);
+}
+
+.panel-title {
+  font-size: x-large;
+}
+
+.main-column-right {
+  @include flexBox(column, none, none);
+  @include dimensions(80%, 45%);
+}
+
+nav {
+  @include flexBox(row, flex-end, none);
+
+  .link {
+    text-align: right;
+    cursor: pointer;
+  }
+
+  .separator {
+    color: $accent-color;
+    padding: 0px 15px;
+    cursor: default;
+  }
+}
+
+.main-column-right-sections-container {
+  @include flexBox(column, space-between, none);
+  @include dimensions(100%, none);
+  padding-top: 10px;
+}
+
+.cost-info-container {
+  @include flexBox(column, space-between, none);
+  @include dimensions(33%, none);
+  @include borderRadius($radius-pixels);
+  box-sizing: border-box;
+  padding: 4%;
+  background: $section-background-color;
+
+  .cost-wrapper {
+    @include flexBox(row, space-between, none);
+  }
+}
+
+.cost-label {
+  align-self: flex-end;
+}
+
+.cost {
+  font-size: xxx-large;
+  color: black;
+}
+
+.prompt-button-container {
+  @include flexBox(column, center, center);
+  @include dimensions(65%, 100%);
+
+  .prompt-button-wrapper {
+    @include flexBox(column, space-around, center);
+    @include dimensions(100%, 100%);
+  }
+}
+
+.greeting,
+.prompt {
+  color: $main-font-color;
+  text-shadow: $shadow;
+  text-align: left;
+  font-size: 60px;
+}
+
+.greeting {
+  margin: 0px;
+}
+
+.book-now {
+  @include dimensions(80px, 280px);
+  @include borderRadius($radius-pixels);
+  background: $accent-color;
+  border: none;
+  color: $main-font-color;
+  font-weight: 500;
+  text-shadow: $shadow;
+  cursor: pointer;
+
+  &:hover {
+    border: 3px solid white;
+    transform: scale(1.01);
+  }
+}
+
+.current-view {
+  color: #999999;
+  cursor: default;
+  pointer-events: none;
+}
+
+.hidden {
+  display: hidden;
 }
