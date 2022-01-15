@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@200;300;400;500;700&display=swap" rel="stylesheet">
     <title>Overlook Hotel</title>
   </head>
   <body>
     <header>
       <h1>Overlook Hotel</h1>
-      <p>Hello Ethan</p>
     </header>
     <main>
-      <section>
+      <section class="main-column-left">
         <h2>Your Bookings</h2>
-        <section>
+        <section class="your-bookings-container">
 
-          <section>
-            <img>
-            <section>
-              <h3>Residential Suite</h3>
+          <section class="panel">
+            <img class="booking-image" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
+            <section class="panel-right-side">
+              <p class="panel-title">Suite</p>
               <section>
                 <p>Room: 27</p>
                 <p>Jan 13, 2022</p>
@@ -27,10 +29,10 @@
             </section>
           </section>
 
-          <section>
-            <img>
-            <section>
-              <h3>Residential Suite</h3>
+          <section class="panel">
+            <img class="booking-image" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
+            <section class="panel-right-side">
+              <p class="panel-title">Junior Suite</p>
               <section>
                 <p>Room: 27</p>
                 <p>Jan 13, 2022</p>
@@ -38,10 +40,32 @@
             </section>
           </section>
 
-          <section>
-            <img>
-            <section>
-              <h3>Residential Suite</h3>
+          <section class="panel">
+            <img class="booking-image" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
+            <section class="panel-right-side">
+              <p class="panel-title">Single Room</p>
+              <section>
+                <p>Room: 27</p>
+                <p>Jan 13, 2022</p>
+              </section>
+            </section>
+          </section>
+
+          <section class="panel">
+            <img class="booking-image" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
+            <section class="panel-right-side">
+              <p class="panel-title">Residential Suite</p>
+              <section>
+                <p>Room: 27</p>
+                <p>Jan 13, 2022</p>
+              </section>
+            </section>
+          </section>
+
+          <section class="panel">
+            <img class="booking-image" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
+            <section class="panel-right-side">
+              <p class="panel-title">Suite</p>
               <section>
                 <p>Room: 27</p>
                 <p>Jan 13, 2022</p>
@@ -52,21 +76,28 @@
         </section>
 
       </section>
-      <section>
-        <h2>Dashboard<span> | </span>Bookings</h2>
-        <section>
-          <h3>Price Summary</h3>
-          <section>
-            <section>
-              <p>Total Cost of Bookings</p>
-              <p>$917.26</p>
+      <section class="main-column-right">
+        <nav>
+          <a class="link current-view" role="link" aria-label="go to dashboard page" >Dashboard</a>
+          <h2 class="separator" aria-hidden="true"> | </h2>
+          <a class="link" aria-label="go to bookings page" role="link">Bookings</a>
+        </nav>
+        <section class="main-column-right-sections-container">
+          <section class="cost-info-container">
+            <p class="panel-title">Price Summary</p>
+            <section class="cost-wrapper">
+              <p class="cost-label">Total Cost of Bookings</p>
+              <p class="cost">$917.26</p>
             </section>
           </section>
-        </section>
-        <section>
-          <section>
-            <p>Plan your next trip!</p>
-            <button>Book Now</button>
+          <section class="prompt-button-container">
+            <section class="prompt-button-wrapper">
+              <section>
+                <p class="greeting">Hello Ethan,</p>
+                <p class="prompt">Plan your next trip!</p>
+              </section>
+              <button class='book-now' aria-label="go to bookings page">Book Now</button>
+            </section>
           </section>
         </section>
       </section>
