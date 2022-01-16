@@ -15,9 +15,20 @@ const getBookings = () => {
   return fetch('http://localhost:3001/api/v1/bookings');
 }
 
+const addNewBooking = (newBooking) => {
+  return fetch('http://localhost:3001/api/v1/bookings', {
+    method: 'POST',
+    body: JSON.stringify(newBooking),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
+
 module.exports = {
   getCustomers,
   getSingleCustomer,
   getRooms,
-  getBookings
+  getBookings,
+  addNewBooking
 }
