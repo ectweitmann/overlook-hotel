@@ -1,12 +1,7 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
+import {domUpdates} from './domUpdates'
 import {apiCall} from './apiCalls';
 
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import './images/booking-image.png'
 import dayjs from 'dayjs';
@@ -15,37 +10,47 @@ import Booking from '../src/classes/Booking';
 import Hotel from '../src/classes/Hotel';
 import Customer from '../src/classes/Customer';
 
-console.log('This is the JavaScript entry file - your code begins here.');
+let currentCustomer;
+let hotel;
 
-apiCall.getCustomers()
-  .then(data => console.log(data));
+Promise.all([apiCall.getRooms(), apiCall.getBookings(), apiCall.getCustomers()])
+  .then(data => createHotel(data))
+  .catch(error => console.log(error));
 
-apiCall.getSingleCustomer(1)
-  .then(data => console.log(data));
+const createHotel = (operationalInfo) => {
+  hotel = new Hotel(
+    operationalInfo[0].rooms,
+    operationalInfo[1].bookings,
+    operationalInfo[2].customers
+  );
+}
 
-apiCall.getRooms()
-  .then(data => console.log(data));
+const getRandomCustomerID = () => {
+  return Math.floor(Math.random() * 50);
+}
 
-apiCall.getBookings()
-  .then(data => data.json())
-  .then(data => console.log(data));
+const checkResponse = (response) => {
+  if(!response.ok) {
+    throw new Error('Unable to complete request. Please make sure the submitted input is valid');
+  } else {
+    return response.json();
+  }
+}
 
-let newBooking = {
-  userID: 1,
-  date: '9999/09/09',
-  roomNumber: 999999999
-};
+const displayCustomerInfo = () => {
+  apiCall.getSingleCustomer(getRandomCustomerID())
+    .then(response => checkResponse(response))
+    .then(customer => gatherCustomerInfo(customer))
+    .then(customer => domUpdates.generateCustomerDashboard(customer))
+    .catch(error => console.log(error));
+}
 
-// apiCalls.addNewBooking(newBooking)
-//   .then(booking => {
-//     console.log(booking)
-//     return apiCalls.getBookings();
-//   })
-//   .then(booking => console.log(booking));
+const gatherCustomerInfo = (customer) => {
+  currentCustomer = new Customer(customer);
+  currentCustomer.getBookings(hotel);
+  currentCustomer.determineTotalCost(hotel);
+  console.log(currentCustomer);
+  return currentCustomer;
+}
 
-// apiCall.deleteBooking("1642359221802")
-//   .then(data => {
-//     console.log(data);
-//     return apiCall.getBookings();
-//   })
-//   .then(bookings => console.log(bookings));
+window.addEventListener('load', displayCustomerInfo);
