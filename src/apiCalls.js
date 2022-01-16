@@ -7,8 +7,12 @@ const getSingleCustomer = (customerID) => {
   return fetch(`http://localhost:3001/api/v1/customers/${customerID}`);
 }
 
+const getRooms = () => {
+  return fetch('http://localhost:3001/api/v1/rooms');
+}
 
 module.exports = {
   getCustomers,
-  getSingleCustomer
+  getSingleCustomer,
+  getRooms
 }
