@@ -40,17 +40,25 @@ const checkResponse = (response) => {
 const displayCustomerInfo = () => {
   apiCall.getSingleCustomer(getRandomCustomerID())
     .then(response => checkResponse(response))
-    .then(customer => gatherCustomerInfo(customer))
+    .then(customer => getCustomerInfo(customer))
     .then(customer => domUpdates.generateCustomerDashboard(customer))
     .catch(error => console.log(error));
 }
 
-const gatherCustomerInfo = (customer) => {
+const getCustomerInfo = (customer) => {
   currentCustomer = new Customer(customer);
   currentCustomer.getBookings(hotel);
   currentCustomer.determineTotalCost(hotel);
-  console.log(currentCustomer);
+  currentCustomer.bookings.forEach((booking, i) => {
+    currentCustomer.bookings[i].roomType = capitalizeRoomTypes(booking.roomType);
+  });
   return currentCustomer;
+}
+
+const capitalizeRoomTypes = (roomType) => {
+  return roomType.split(' ')
+    .map(name => name[0].toUpperCase() + name.slice(1))
+    .join(' ');
 }
 
 window.addEventListener('load', displayCustomerInfo);
