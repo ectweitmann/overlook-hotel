@@ -25,10 +25,23 @@ const addNewBooking = (newBooking) => {
   });
 }
 
+const deleteBooking = (bookingID) => {
+  return fetch(`http://localhost:3001/api/v1/bookings/${bookingID}`, {
+    method: 'DELETE',
+    body: JSON.stringify({
+      id: bookingID
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
+
 module.exports = {
   getCustomers,
   getSingleCustomer,
   getRooms,
   getBookings,
-  addNewBooking
+  addNewBooking,
+  deleteBooking
 }
