@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 const scrollSection = document.querySelector('#scrollSection');
 const customerCost = document.querySelector('#customerCost');
 const customerGreeting = document.querySelector('#customerGreeting');
@@ -17,7 +19,7 @@ const domUpdates = {
           <p class="panel-title">${booking.roomType}</p>
           <section class="booking-info">
             <p>Room: ${booking.roomNumber}</p>
-            <p>${booking.date}</p>
+            <p>${dayjs(booking.date).format('MMM DD, YYYY')}</p>
           </section>
         </section>
       </section>`
