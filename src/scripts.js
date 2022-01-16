@@ -8,5 +8,9 @@ import './css/base.scss';
 import './images/turing-logo.png'
 import './images/booking-image.png'
 import dayjs from 'dayjs';
+import Room from '../src/classes/Room';
+import Booking from '../src/classes/Booking';
+import Hotel from '../src/classes/Hotel';
+import Customer from '../src/classes/Customer';
 
 console.log('This is the JavaScript entry file - your code begins here.');
