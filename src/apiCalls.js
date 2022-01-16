@@ -11,8 +11,13 @@ const getRooms = () => {
   return fetch('http://localhost:3001/api/v1/rooms');
 }
 
+const getBookings = () => {
+  return fetch('http://localhost:3001/api/v1/bookings');
+}
+
 module.exports = {
   getCustomers,
   getSingleCustomer,
-  getRooms
+  getRooms,
+  getBookings
 }
