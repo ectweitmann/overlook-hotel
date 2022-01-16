@@ -3,14 +3,8 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import {
-  getCustomers,
-  getSingleCustomer,
-  getRooms,
-  getBookings,
-  addNewBooking,
-  deleteBooking
-} from './apiCalls';
+import {apiCall} from './apiCalls';
+
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
@@ -19,16 +13,17 @@ import './images/booking-image.png'
 
 console.log('This is the JavaScript entry file - your code begins here.');
 
-getCustomers()
+apiCall.getCustomers()
   .then(data => console.log(data));
 
-getSingleCustomer(1)
+apiCall.getSingleCustomer(1)
   .then(data => console.log(data));
 
-getRooms()
+apiCall.getRooms()
   .then(data => console.log(data));
 
-getBookings()
+apiCall.getBookings()
+  .then(data => data.json())
   .then(data => console.log(data));
 
 let newBooking = {
@@ -37,16 +32,16 @@ let newBooking = {
   roomNumber: 999999999
 };
 
-// addNewBooking(newBooking)
+// apiCalls.addNewBooking(newBooking)
 //   .then(booking => {
 //     console.log(booking)
-//     return getBookings();
+//     return apiCalls.getBookings();
 //   })
 //   .then(booking => console.log(booking));
 
-// deleteBooking("1642356832980")
+// apiCall.deleteBooking("1642359221802")
 //   .then(data => {
 //     console.log(data);
-//     return getBookings();
+//     return apiCall.getBookings();
 //   })
 //   .then(bookings => console.log(bookings));
