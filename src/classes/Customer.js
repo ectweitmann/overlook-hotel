@@ -12,7 +12,8 @@ class Customer {
     let hotelCopy = JSON.parse(JSON.stringify(hotel.bookedRooms));
     hotelCopy.forEach(booking => {
       if (booking.userID === this.id) {
-        booking['roomType'] = hotel.allRooms.find(room => room.number === booking.roomNumber).roomType;
+        booking['roomType'] = hotel.allRooms
+          .find(room => room.number === booking.roomNumber).roomType;
         this.bookings.push(booking);
       }
     });
@@ -21,7 +22,7 @@ class Customer {
   // ADD METHOD FOR CUSTOMER TO BOOK A ROOM
 
   determineTotalCost(hotel) {
-    this.totalCost = hotel.calculateRevenue(this.id);
+    this.totalCost = hotel.calculateRevenue(this.id).toFixed(2);
   }
 }
 
