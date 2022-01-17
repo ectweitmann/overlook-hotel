@@ -86,7 +86,7 @@ main {
 
 .booking-info {
   @include flexBox(column, space-between, flex-start);
-  @include dimensions(25%, 95%);
+  @include dimensions(30%, 95%);
   font-size: medium;
 }
 
@@ -175,14 +175,14 @@ nav {
   box-sizing: border-box;
   padding: 4%;
   background: $section-background-color;
+}
 
-  .cost-wrapper {
-    @include flexBox(row, space-between, none);
-  }
+.cost-wrapper {
+  @include flexBox(row, space-between, none);
+}
 
-  .input-wrapper {
-    @include flexBox(row, space-around, none);
-  }
+.input-wrapper {
+  @include flexBox(row, space-around, none);
 }
 
 .cost-label {
@@ -220,11 +220,11 @@ nav {
 .prompt-button-container {
   @include flexBox(column, center, center);
   @include dimensions(65%, 100%);
+}
 
-  .prompt-button-wrapper {
-    @include flexBox(column, space-evenly, center);
-    @include dimensions(100%, 100%);
-  }
+.prompt-button-wrapper {
+  @include flexBox(column, space-evenly, center);
+  @include dimensions(100%, 100%);
 }
 
 .prompt-background {
@@ -281,5 +281,5 @@ span {
 }
 
 .hidden {
-  display: none !important;
+  display: none;
 }
