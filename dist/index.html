@@ -10,20 +10,18 @@
     <title>Overlook Hotel</title>
   </head>
   <body>
-    <header>
-      <h1>Overlook Hotel</h1>
-    </header>
+    <h1>Overlook Hotel</h1>
     <main>
       <section class="main-column-left">
         <h2 id="listTitle">Your Bookings</h2>
-        <section class="your-bookings-container" id="scrollSection">
+        <section class="your-bookings-container" id="scrollSection" role="list" aria-live="polite">
         </section>
       </section>
       <section class="main-column-right">
         <nav id="navBar">
-          <a class="link current-view" id="navDashboard" role="link" aria-label="go to dashboard page" >Dashboard</a>
-          <h2 class="separator" aria-hidden="true"> | </h2>
-          <a class="link" id="navBooking" aria-label="go to bookings page" role="link">Bookings</a>
+          <a class="link current-view" id="navDashboard" role="link" aria-disabled="true" aria-label="go to dashboard page" tabindex="0">Dashboard</a>
+          <h2 class="separator" role="separator"> | </h2>
+          <a class="link" id="navBooking" aria-disabled="false" aria-label="go to bookings page" role="link" tabindex="0">Bookings</a>
         </nav>
         <section class="main-column-right-sections-container">
           <section class="cost-info-container">
