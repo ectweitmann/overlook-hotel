@@ -12,10 +12,13 @@ const buttonSearchRooms = document.querySelector('#buttonSearchRooms');
 const navDashboard = document.querySelector('#navDashboard');
 const navBooking = document.querySelector('#navBooking');
 const calendar = document.querySelector('#calendar');
+let dropDownRoomType = document.querySelector('#dropDown');
 
 const bookingInputFields = document.querySelector('#bookingInputFields');
 const dashboardCost = document.querySelector('#dashboardCost');
 const buttonDashboard = document.querySelector('#buttonDashboard');
+
+let dropDown = dropDownRoomType; // Unexplainable bug with dropDownRoomType
 
 const toggleClass = (elements, rule, isVisibile) => {
   elements.forEach(element => element.classList.toggle(rule, isVisibile));
@@ -74,8 +77,9 @@ const domUpdates = {
   },
   generateAvailableRooms(hotel) {
     if (!hotel.availableRooms.length) {
-      domUpdats.generateNoResultsPanel();
-      changeInnerText(prompt, 'We are so sorry, no available rooms fit your search criteria!<br>Please try again!')
+      domUpdates.generateNoResultsPanel();
+      changeInnerText(prompt, 'We are so sorry, no rooms are available that fit your search criteria! Please try a new search!')
+      return;
     }
     scrollSection.innerHTML = '';
     hotel.availableRooms.forEach(room => {
