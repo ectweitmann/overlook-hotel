@@ -46,6 +46,22 @@ main {
   @include dimensions(90%, 90%);
 }
 
+.login {
+  @include dimensions(100vh, 50%);
+  @include flexBox(column, flex-start, center);
+  background-color: hsl(255, 255, 255, 1);
+  box-sizing: border-box;
+  border-left: 10px solid black;
+  border-right: 10px solid black;
+
+  h1 {
+    font-size: 50px;
+    color: black;
+    font-weight: 500;
+    transform: translateY(50px);
+  }
+}
+
 .main-column-left {
   @include dimensions(80%, 45%);
 }
