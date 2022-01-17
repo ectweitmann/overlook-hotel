@@ -40,7 +40,6 @@ a,
   font-size: xx-large;
 }
 
-
 main {
   @include flexBox(row, space-evenly, center);
   @include dimensions(90%, 90%);
@@ -203,13 +202,19 @@ nav {
   @include flexBox(column, none, none);
 }
 
+label {
+  font-size: small;
+  padding-left: 3px;
+  padding-bottom: 3px;
+}
+
 .input-date,
-.input-room-type {
-  @include dimensions(40px, 250px);
+.input-room-type,
+.search-rooms {
   @include borderRadius($radius-pixels);
-  border: 1px solid;
+  border: 1px solid black;
   text-align: center;
-  font-size: large;
+  font-size: medium;
   cursor: pointer;
 
   &:hover {
@@ -217,8 +222,28 @@ nav {
   }
 }
 
+.input-date {
+  @include dimensions(41px, 140px);
+}
+
 .input-room-type {
+  @include dimensions(44px, 200px);
   height: 44px;
+}
+
+.search-rooms {
+  @include dimensions(44px, 150px);
+  @include borderRadius($radius-pixels);
+  transform: translateY(16px);
+  background: $section-background-color;
+  color: black;
+
+  &:hover {
+    background-color: $accent-color;
+    border: 1px solid black;
+    color: $main-font-color;
+    text-shadow: $shadow;
+  }
 }
 
 .prompt-button-container {
@@ -273,7 +298,6 @@ span {
     outline-offset: 1px;
     outline-width: 3px;
     outline-style: solid;
-    transform: scale(1.01);
   }
 
   &:focus {
