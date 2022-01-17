@@ -52,18 +52,31 @@ main {
 
 .your-bookings-container {
   position: relative;
-  @include flexBox(column, none, none);
+  @include flexBox(column, none, center);
   @include dimensions(92%, 100%);
   overflow-y: scroll;
-  transform: translateY(10px);
+  transform: translateY(6px);
+  padding-top: 4px;
 }
 
 .panel {
   @include flexBox(row, space-between, center);
-  @include dimensions(30%, none);
+  @include dimensions(30%, 98%);
   @include borderRadius($radius-pixels);
   background: $section-background-color;
   margin-bottom: 3%;
+}
+
+.booked-rooms {
+  cursor: default;
+  pointer-events: none;
+
+  &:focus {
+    outline-color: $accent-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
+  }
 }
 
 .booking-image {
@@ -73,8 +86,9 @@ main {
 }
 
 .booking-info {
-  @include flexBox(column, space-between, none);
-  @include dimensions(25%, 95%);
+  @include flexBox(column, space-between, flex-start);
+  @include dimensions(30%, 95%);
+  font-size: medium;
 }
 
 .panel-right-side {
@@ -95,12 +109,16 @@ main {
 .available-room {
 
   &:hover {
-    border-bottom: 5px solid $accent-color;
+    outline-color: $accent-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
   }
 
   &:focus {
     outline-color: $accent-color;
-    outline-width: 5px;
+    outline-offset: 1px;
+    outline-width: 3px;
     outline-style: solid;
   }
 }
@@ -161,14 +179,14 @@ nav {
   box-sizing: border-box;
   padding: 4%;
   background: $section-background-color;
+}
 
-  .cost-wrapper {
-    @include flexBox(row, space-between, none);
-  }
+.cost-wrapper {
+  @include flexBox(row, space-between, none);
+}
 
-  .input-wrapper {
-    @include flexBox(row, space-around, none);
-  }
+.input-wrapper {
+  @include flexBox(row, space-around, none);
 }
 
 .cost-label {
@@ -206,11 +224,11 @@ nav {
 .prompt-button-container {
   @include flexBox(column, center, center);
   @include dimensions(65%, 100%);
+}
 
-  .prompt-button-wrapper {
-    @include flexBox(column, space-evenly, center);
-    @include dimensions(100%, 100%);
-  }
+.prompt-button-wrapper {
+  @include flexBox(column, space-evenly, center);
+  @include dimensions(100%, 100%);
 }
 
 .prompt-background {
@@ -251,11 +269,28 @@ span {
   text-shadow: $shadow;
 
   &:hover {
-    border: 3px solid white;
+    outline-color: $section-background-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
     transform: scale(1.01);
+  }
+
+  &:focus {
+    outline-color: $section-background-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
   }
 }
 
+.focused {
+  outline-color: $accent-color;
+  outline-offset: 1px;
+  outline-width: 3px;
+  outline-style: solid;
+}
+
 .hidden {
-  display: none !important;
+  display: none;
 }
