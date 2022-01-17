@@ -69,6 +69,7 @@ main {
 
 .booked-rooms {
   cursor: default;
+  pointer-events: none;
 
   &:focus {
     outline-color: $accent-color;
@@ -108,7 +109,10 @@ main {
 .available-room {
 
   &:hover {
-    border-bottom: 5px solid $accent-color;
+    outline-color: $accent-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
   }
 
   &:focus {
@@ -278,6 +282,13 @@ span {
     outline-width: 3px;
     outline-style: solid;
   }
+}
+
+.focused {
+  outline-color: $accent-color;
+  outline-offset: 1px;
+  outline-width: 3px;
+  outline-style: solid;
 }
 
 .hidden {
