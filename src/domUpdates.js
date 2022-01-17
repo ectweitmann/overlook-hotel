@@ -2,12 +2,12 @@ import dayjs from 'dayjs';
 
 const scrollSection = document.querySelector('#scrollSection');
 const customerCost = document.querySelector('#customerCost');
-const promptDashboard = document.querySelector('#promptDashboard');
-const promptSelect = document.querySelector('#promptSelect');
+const prompt = document.querySelector('#prompt');
 const promptConfirm = document.querySelector('#promptConfirm');
 const customerGreeting = document.querySelector('#customerGreeting');
 const listTitle = document.querySelector('#listTitle');
 const panelTitle = document.querySelector('#panelTitle');
+const buttonSearchRooms = document.querySelector('#buttonSearchRooms');
 
 const navDashboard = document.querySelector('#navDashboard');
 const navBooking = document.querySelector('#navBooking');
@@ -17,8 +17,8 @@ const bookingInputFields = document.querySelector('#bookingInputFields');
 const dashboardCost = document.querySelector('#dashboardCost');
 const buttonDashboard = document.querySelector('#buttonDashboard');
 
-const toggleClass = (elements, rule) => {
-  elements.forEach(element => element.classList.toggle(rule));
+const toggleClass = (elements, rule, isVisibile) => {
+  elements.forEach(element => element.classList.toggle(rule, isVisibile));
 }
 
 const toggleAttribute = (element, value, state) => {
@@ -27,6 +27,10 @@ const toggleAttribute = (element, value, state) => {
 
 const changeInnerText = (element, text) => {
   element.innerText = text;
+}
+
+const highlightError = (element, isOn) => {
+  element.classList.toggle('invalid', isOn);
 }
 
 const domUpdates = {
@@ -43,6 +47,12 @@ const domUpdates = {
     toggleAttribute(scrollSection, 'aria-live', 'polite');
     toggleAttribute(navBooking, 'aria-disabled', true);
     toggleAttribute(navDashboard, 'aria-disabled', false);
+    highlightError(calendar, false);
+  },
+  showInvalidDateErrorMessages() {
+    domUpdates.generateNoResultsPanel();
+    changeInnerText(prompt, 'Check-in dates are limited to between today and Dec. 31, 2023');
+    highlightError(calendar, true);
   },
   generateCustomerDashboard(customer) {
     scrollSection.innerHTML = '';
@@ -63,6 +73,10 @@ const domUpdates = {
     changeInnerText(customerCost, `$${customer.totalCost}`);
   },
   generateAvailableRooms(hotel) {
+    if (!hotel.availableRooms.length) {
+      domUpdats.generateNoResultsPanel();
+      changeInnerText(prompt, 'We are so sorry, no available rooms fit your search criteria!<br>Please try again!')
+    }
     scrollSection.innerHTML = '';
     hotel.availableRooms.forEach(room => {
       scrollSection.innerHTML +=
@@ -87,26 +101,35 @@ const domUpdates = {
           </section>
         </button>`;
     });
+    changeInnerText(prompt, 'Select a room you\'d like to book.');
+    highlightError(calendar, false);
   },
   changePageDisplay() {
     toggleClass([
       bookingInputFields,
       dashboardCost,
       buttonDashboard,
-      promptSelect,
       customerGreeting,
-      promptDashboard
     ], 'hidden');
+    highlightError(calendar, false);
     toggleClass([navDashboard, navBooking], 'current-view');
     if (navBooking.classList.contains('current-view')) {
       changeInnerText(listTitle, 'Available Rooms');
       changeInnerText(panelTitle, 'Search Rooms');
+      changeInnerText(prompt, 'Select a room you\'d like to book.');
     } else {
       changeInnerText(listTitle, 'Your Bookings');
       changeInnerText(panelTitle, 'Price Summary');
+      changeInnerText(prompt, 'Plan your next trip:');
     }
   },
-
+  generateNoResultsPanel() {
+    scrollSection.innerHTML = '';
+    scrollSection.innerHTML +=
+      `<button class="panel no-results" role="listitem">
+        <p class="panel-title">No available rooms found.</h2>
+      </button>`;
+  }
 };
 
 export {domUpdates};
