@@ -52,18 +52,30 @@ main {
 
 .your-bookings-container {
   position: relative;
-  @include flexBox(column, none, none);
+  @include flexBox(column, none, center);
   @include dimensions(92%, 100%);
   overflow-y: scroll;
-  transform: translateY(10px);
+  transform: translateY(6px);
+  padding-top: 4px;
 }
 
 .panel {
   @include flexBox(row, space-between, center);
-  @include dimensions(30%, none);
+  @include dimensions(30%, 98%);
   @include borderRadius($radius-pixels);
   background: $section-background-color;
   margin-bottom: 3%;
+}
+
+.booked-rooms {
+  cursor: default;
+
+  &:focus {
+    outline-color: $accent-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
+  }
 }
 
 .booking-image {
@@ -73,8 +85,9 @@ main {
 }
 
 .booking-info {
-  @include flexBox(column, space-between, none);
+  @include flexBox(column, space-between, flex-start);
   @include dimensions(25%, 95%);
+  font-size: medium;
 }
 
 .panel-right-side {
@@ -100,7 +113,8 @@ main {
 
   &:focus {
     outline-color: $accent-color;
-    outline-width: 5px;
+    outline-offset: 1px;
+    outline-width: 3px;
     outline-style: solid;
   }
 }
@@ -251,8 +265,18 @@ span {
   text-shadow: $shadow;
 
   &:hover {
-    border: 3px solid white;
+    outline-color: $section-background-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
     transform: scale(1.01);
+  }
+
+  &:focus {
+    outline-color: $section-background-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
   }
 }
 
