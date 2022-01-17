@@ -21,16 +21,34 @@ const toggleClass = (elements, rule) => {
   elements.forEach(element => element.classList.toggle(rule));
 }
 
+const toggleAttribute = (element, value, state) => {
+  element.setAttribute(value, state);
+}
+
 const changeInnerText = (element, text) => {
   element.innerText = text;
 }
 
 const domUpdates = {
+  displayDashboard(customer) {
+    domUpdates.changePageDisplay();
+    domUpdates.generateCustomerDashboard(customer);
+    toggleAttribute(scrollSection, 'aria-live', null);
+    toggleAttribute(navBooking, 'aria-disabled', false);
+    toggleAttribute(navDashboard, 'aria-disabled', true);
+  },
+  displayBookingsPage(hotel) {
+    domUpdates.changePageDisplay();
+    domUpdates.generateAvailableRooms(hotel);
+    toggleAttribute(scrollSection, 'aria-live', 'polite');
+    toggleAttribute(navBooking, 'aria-disabled', true);
+    toggleAttribute(navDashboard, 'aria-disabled', false);
+  },
   generateCustomerDashboard(customer) {
     scrollSection.innerHTML = '';
     customer.bookings.forEach(booking => {
       scrollSection.innerHTML +=
-        `<button class="panel booked-rooms">
+        `<button class="panel booked-rooms" role="listitem">
           <img class="booking-image" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
           <section class="panel-right-side">
             <p class="panel-title">${booking.roomType}</p>
@@ -48,7 +66,7 @@ const domUpdates = {
     scrollSection.innerHTML = '';
     hotel.availableRooms.forEach(room => {
       scrollSection.innerHTML +=
-        `<button class="panel available-room">
+        `<button class="panel available-room" role="listitem">
           <img class="booking-image" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
           <section class="panel-right-side">
             <p class="panel-title">${room.roomType}</p>
