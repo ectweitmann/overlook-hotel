@@ -66,6 +66,10 @@ main {
   margin-bottom: 3%;
 }
 
+.no-results {
+  justify-content: center;
+}
+
 .booked-rooms {
   cursor: default;
   pointer-events: none;
@@ -223,7 +227,7 @@ label {
 }
 
 .input-date {
-  @include dimensions(41px, 140px);
+  @include dimensions(41px, 155px);
 }
 
 .input-room-type {
@@ -313,6 +317,14 @@ span {
   outline-offset: 1px;
   outline-width: 3px;
   outline-style: solid;
+}
+
+.invalid {
+  border: 3px solid red;
+
+  &:hover {
+    border: 3px solid red;
+  }
 }
 
 .hidden {
