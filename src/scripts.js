@@ -1,4 +1,5 @@
 import './css/base.scss';
+import './domUpdates';
 import {domUpdates} from './domUpdates'
 import {apiCall} from './apiCalls';
 
@@ -12,6 +13,11 @@ import Customer from '../src/classes/Customer';
 
 let currentCustomer;
 let hotel;
+
+let today = dayjs().format('YYYY-MM-DD');
+calendar.value = today;
+calendar.min = dayjs().format('YYYY-MM-DD');
+calendar.max = dayjs('2023-12-31').format('YYYY-MM-DD');
 
 Promise.all([apiCall.getRooms(), apiCall.getBookings(), apiCall.getCustomers()])
   .then(data => createHotel(data))
@@ -61,4 +67,26 @@ const capitalizeRoomTypes = (roomType) => {
     .join(' ');
 }
 
+const changePages = (event) => {
+  if (event.target.id === 'navBooking' || event.target.id === 'buttonDashboard') {
+    hotel.determineAvailableRooms(today);
+    domUpdates.changePageDisplay();
+    domUpdates.generateAvailableRooms(hotel);
+    console.log(hotel.availableRooms);
+  } else {
+    domUpdates.changePageDisplay();
+    domUpdates.generateCustomerDashboard(currentCustomer);
+  }
+}
+
 window.addEventListener('load', displayCustomerInfo);
+
+navDashboard.addEventListener('click', changePages);
+
+navBooking.addEventListener('click', changePages);
+
+buttonDashboard.addEventListener('click', changePages);
+
+calendar.addEventListener('change', (event) => {
+  console.log(event.target.value);
+});
