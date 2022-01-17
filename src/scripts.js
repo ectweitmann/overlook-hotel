@@ -47,7 +47,7 @@ const displayCustomerInfo = () => {
   apiCall.getSingleCustomer(getRandomCustomerID())
     .then(response => checkResponse(response))
     .then(customer => getCustomerInfo(customer))
-    .then(customer => domUpdates.generateCustomerDashboard(customer))
+    .then(customerInfo => domUpdates.generateCustomerDashboard(customerInfo))
     .catch(error => console.log(error));
 }
 
@@ -55,27 +55,25 @@ const getCustomerInfo = (customer) => {
   currentCustomer = new Customer(customer);
   currentCustomer.getBookings(hotel);
   currentCustomer.determineTotalCost(hotel);
-  currentCustomer.bookings.forEach((booking, i) => {
-    currentCustomer.bookings[i].roomType = capitalizeRoomTypes(booking.roomType);
-  });
+  capitalizeRoomTypes(currentCustomer.bookings);
   return currentCustomer;
 }
 
-const capitalizeRoomTypes = (roomType) => {
-  return roomType.split(' ')
-    .map(name => name[0].toUpperCase() + name.slice(1))
-    .join(' ');
+const capitalizeRoomTypes = (roomList) => {
+  roomList.forEach((room, i) => {
+    roomList[i].roomType = room.roomType.split(' ')
+      .map(name => name[0].toUpperCase() + name.slice(1))
+      .join(' ');
+  });
 }
 
 const changePages = (event) => {
   if (event.target.id === 'navBooking' || event.target.id === 'buttonDashboard') {
     hotel.determineAvailableRooms(today);
-    domUpdates.changePageDisplay();
-    domUpdates.generateAvailableRooms(hotel);
-    console.log(hotel.availableRooms);
+    capitalizeRoomTypes(hotel.availableRooms)
+    domUpdates.displayBookingsPage(hotel)
   } else {
-    domUpdates.changePageDisplay();
-    domUpdates.generateCustomerDashboard(currentCustomer);
+    domUpdates.displayDashboard(currentCustomer);
   }
 }
 
@@ -86,7 +84,3 @@ navDashboard.addEventListener('click', changePages);
 navBooking.addEventListener('click', changePages);
 
 buttonDashboard.addEventListener('click', changePages);
-
-calendar.addEventListener('change', (event) => {
-  console.log(event.target.value);
-});
