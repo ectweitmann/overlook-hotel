@@ -20,15 +20,15 @@
         </section>
       </section>
       <section class="main-column-right">
-        <nav>
+        <nav id="navBar">
           <a class="link current-view" id="navDashboard" role="link" aria-label="go to dashboard page" >Dashboard</a>
           <h2 class="separator" aria-hidden="true"> | </h2>
           <a class="link" id="navBooking" aria-label="go to bookings page" role="link">Bookings</a>
         </nav>
         <section class="main-column-right-sections-container">
           <section class="cost-info-container">
-            <p class="section-title" id="panelTitleRC">Price Summary</p>
-            <section class="cost-wrapper" id="dashboardCost">
+            <p class="section-title" id="panelTitle">Price Summary</p>
+            <section class="cost-wrapper " id="dashboardCost">
               <p class="cost-label">Total Cost of Bookings</p>
               <p class="cost" id="customerCost"></p>
             </section>
@@ -56,7 +56,9 @@
             <section class="prompt-button-wrapper prompt-background">
               <section id="promptSection">
                 <p class="greeting" id="customerGreeting"></p>
-                <p class="prompt">Plan your next trip:</p>
+                <p class="prompt" id="promptDashboard">Plan your next trip:</p>
+                <p class="prompt hidden" id="promptSelect">Select a room you'd like to book.</p>
+                <p class="prompt hidden" id="promptConfirm">Would you like to book <span>Room 27</span>?</p>
               </section>
               <button class='book-now' id="buttonDashboard" aria-label="go to bookings page">Book Now</button>
               <button class='confirm-booking hidden' id="buttonConfirmBooking" aria-label="confirm booking for selected room">Confirm</button>
@@ -65,7 +67,6 @@
         </section>
       </section>
     </main>
-    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
     <script src="bundle.js"></script>
   </body>
 </html>
