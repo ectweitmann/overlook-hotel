@@ -6,6 +6,8 @@ import {apiCall} from './apiCalls';
 import './images/turing-logo.png'
 import './images/booking-image.png'
 import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween'
+dayjs.extend(isBetween);
 import Room from '../src/classes/Room';
 import Booking from '../src/classes/Booking';
 import Hotel from '../src/classes/Hotel';
@@ -13,11 +15,7 @@ import Customer from '../src/classes/Customer';
 
 let currentCustomer;
 let hotel;
-
-let today = dayjs().format('YYYY-MM-DD');
-calendar.value = today;
-calendar.min = dayjs().format('YYYY-MM-DD');
-calendar.max = dayjs('2023-12-31').format('YYYY-MM-DD');
+let today = dayjs().format('YYYY/MM/DD');
 
 Promise.all([apiCall.getRooms(), apiCall.getBookings(), apiCall.getCustomers()])
   .then(data => createHotel(data))
@@ -59,6 +57,16 @@ const getCustomerInfo = (customer) => {
   return currentCustomer;
 }
 
+const updateAvailableRoomsList = () => {
+  if (!dayjs(calendar.value).isBetween(calendar.min, calendar.max, null, [])) {
+    return domUpdates.showInvalidDateErrorMessages();
+  }
+  const selectedDate = dayjs(calendar.value).format('YYYY/MM/DD');
+  hotel.determineAvailableRooms(selectedDate);
+  capitalizeRoomTypes(hotel.availableRooms);
+  domUpdates.generateAvailableRooms(hotel);
+}
+
 const capitalizeRoomTypes = (roomList) => {
   roomList.forEach((room, i) => {
     roomList[i].roomType = room.roomType.split(' ')
@@ -74,13 +82,29 @@ const changePages = (event) => {
     domUpdates.displayBookingsPage(hotel)
   } else {
     domUpdates.displayDashboard(currentCustomer);
+    setCalendarDefaultDate();
   }
 }
 
-window.addEventListener('load', displayCustomerInfo);
+const setCalendarDefaultDate = () => {
+  calendar.value = dayjs().format('YYYY-MM-DD');
+  calendar.min = dayjs().format('YYYY-MM-DD');
+  calendar.max = dayjs('2023-12-31').format('YYYY-MM-DD');
+}
+
+const setUpApplication = (event) => {
+  setCalendarDefaultDate();
+  displayCustomerInfo();
+}
+
+window.addEventListener('load', setUpApplication);
 
 navDashboard.addEventListener('click', changePages);
 
 navBooking.addEventListener('click', changePages);
 
 buttonDashboard.addEventListener('click', changePages);
+
+buttonSearchRooms.addEventListener('click', (e) => {
+  updateAvailableRoomsList(e);
+});
