@@ -269,7 +269,7 @@ label {
 .greeting,
 .prompt {
   color: $main-font-color;
-  text-shadow: $shadow;
+  text-shadow: -3px -2px 0px black;
   text-align: center;
   font-size: 50px;
 }
