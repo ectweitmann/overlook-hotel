@@ -60,11 +60,18 @@ const getCustomerInfo = (customer) => {
 const updateAvailableRoomsList = () => {
   if (!dayjs(calendar.value).isBetween(calendar.min, calendar.max, null, [])) {
     return domUpdates.showInvalidDateErrorMessages();
+  } else if (dropDown.value === '' || dropDown.value === 'any') {
+    const selectedDate = dayjs(calendar.value).format('YYYY/MM/DD');
+    hotel.determineAvailableRooms(selectedDate);
+    capitalizeRoomTypes(hotel.availableRooms);
+    domUpdates.generateAvailableRooms(hotel);
+  } else {
+    const selectedDate = dayjs(calendar.value).format('YYYY/MM/DD');
+    hotel.determineAvailableRooms(selectedDate);
+    hotel.filterByRoomType(dropDown.value);
+    capitalizeRoomTypes(hotel.availableRooms);
+    domUpdates.generateAvailableRooms(hotel);
   }
-  const selectedDate = dayjs(calendar.value).format('YYYY/MM/DD');
-  hotel.determineAvailableRooms(selectedDate);
-  capitalizeRoomTypes(hotel.availableRooms);
-  domUpdates.generateAvailableRooms(hotel);
 }
 
 const capitalizeRoomTypes = (roomList) => {
@@ -82,18 +89,19 @@ const changePages = (event) => {
     domUpdates.displayBookingsPage(hotel)
   } else {
     domUpdates.displayDashboard(currentCustomer);
-    setCalendarDefaultDate();
+    setDefaultInputValues();
   }
 }
 
-const setCalendarDefaultDate = () => {
+const setDefaultInputValues = () => {
   calendar.value = dayjs().format('YYYY-MM-DD');
   calendar.min = dayjs().format('YYYY-MM-DD');
   calendar.max = dayjs('2023-12-31').format('YYYY-MM-DD');
+  dropDown.selectedIndex = 0;
 }
 
 const setUpApplication = (event) => {
-  setCalendarDefaultDate();
+  setDefaultInputValues();
   displayCustomerInfo();
 }
 
