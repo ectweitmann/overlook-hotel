@@ -19,7 +19,13 @@ class Customer {
     });
   }
 
-  // ADD METHOD FOR CUSTOMER TO BOOK A ROOM
+  bookRoom(roomNumber, date) {
+    return {
+      userID: this.id,
+      date: date,
+      roomNumber: parseInt(roomNumber)
+    };
+  }
 
   determineTotalCost(hotel) {
     this.totalCost = hotel.calculateRevenue(this.id).toFixed(2);

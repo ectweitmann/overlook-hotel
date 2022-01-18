@@ -2,18 +2,15 @@
 const apiCall = {
   getCustomers() {
     return fetch('http://localhost:3001/api/v1/customers')
-      .then(response => response.json())
   },
   getSingleCustomer(customerID) {
     return fetch(`http://localhost:3001/api/v1/customers/${customerID}`)
   },
   getRooms() {
     return fetch('http://localhost:3001/api/v1/rooms')
-      .then(response => response.json());
   },
   getBookings() {
     return fetch('http://localhost:3001/api/v1/bookings')
-      .then(response => response.json())
   },
   addNewBooking(newBooking) {
     return fetch('http://localhost:3001/api/v1/bookings', {
