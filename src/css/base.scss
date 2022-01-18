@@ -10,7 +10,7 @@ button {
 }
 
 * {
-  font-family: $font;
+  font-family: $font !important;
 }
 
 body {
@@ -36,7 +36,8 @@ h2,
 .link,
 .book-now,
 .confirm-booking,
-.decline-booking {
+.decline-booking,
+.login-text {
   font-size: xx-large;
 }
 
@@ -47,18 +48,45 @@ main {
 
 .login {
   @include dimensions(100vh, 50%);
-  @include flexBox(column, flex-start, center);
-  background-color: hsl(255, 255, 255, 1);
-  box-sizing: border-box;
-  border-left: 10px solid black;
-  border-right: 10px solid black;
+  @include flexBox(column, center, center);
 
   h1 {
-    font-size: 50px;
-    color: black;
-    font-weight: 500;
-    transform: translateY(50px);
+    transform: translateY(-10px);
   }
+}
+
+.login-container {
+  @include flexBox(row, center, center);
+  @include dimensions(50%, 70%);
+  @include borderRadius($radius-pixels);
+  background-color: $section-background-color;
+  box-sizing: border-box;
+  border: 2px solid black;
+  outline-color: $accent-color;
+  outline-style: solid;
+  outline-width: medium;
+  outline-offset: -6px;
+  box-shadow: 0px 0px 10px black;
+}
+
+.login-wrapper {
+  @include flexBox(column, space-around, center);
+  @include dimensions(80%, 80%);
+  //border: 3px solid black;
+}
+
+.login-text {
+  color: black;
+  font-weight: 400;
+  transform: translateY(-10px);
+}
+
+.login-input-wrapper {
+  transform: scale(1.4);
+}
+
+.button-submit {
+  border: 1px solid black;
 }
 
 .main-column-left {
@@ -220,7 +248,8 @@ nav {
 }
 
 .date-wrapper,
-.dropdown-wrapper {
+.dropdown-wrapper,
+.login-input-wrapper {
   @include flexBox(column, none, none);
 }
 
@@ -253,7 +282,8 @@ label {
   height: 44px;
 }
 
-.search-rooms {
+.search-rooms,
+.button-submit {
   @include dimensions(44px, 150px);
   @include borderRadius($radius-pixels);
   transform: translateY(16px);
