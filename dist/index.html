@@ -10,8 +10,27 @@
     <title>Overlook Hotel</title>
   </head>
   <body>
-    <h1>Overlook Hotel</h1>
-    <main>
+    <section class="login hidden">
+      <h1>Overlook Hotel</h1>
+      <section class="login-container">
+        <form class="login-wrapper">
+          <h2 class="login-text">Please Login</h2>
+          <section class="login-input-wrapper">
+            <label for>Username</label>
+            <input type="text" name="username" placeholder="Enter username here" required>
+          </section>
+          <section class="login-input-wrapper">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password here" required>
+          </section>
+          <button class="button-submit" type="button">Submit</button>
+        </form>
+      </section>
+    </section>
+    <header class="">
+      <h1>Overlook Hotel</h1>
+    </header>
+    <main class="">
       <section class="main-column-left">
         <h2 id="listTitle">Your Bookings</h2>
         <section class="your-bookings-container" id="scrollSection" role="list" aria-live="polite">
@@ -30,11 +49,10 @@
               <p class="cost-label">Total Cost of Bookings</p>
               <p class="cost" id="customerCost"></p>
             </section>
-            <!-- Bookings View // Hidden in Dashboard -->
             <section class="input-wrapper hidden" id="bookingInputFields">
               <section class="date-wrapper">
                 <label for="calendar">Check-in date:</label>
-                <input type="date" class="input-date" id="calendar">
+                <input type="date" name="calendar" class="input-date" id="calendar">
               </section>
               <section class="dropdown-wrapper">
                 <label for="roomType">Filter by room type:</label>
@@ -49,7 +67,6 @@
               </section>
               <button type='button' class='search-rooms' id="buttonSearchRooms">Search Rooms</button>
             </section>
-            <!-- End Bookings View -->
           </section>
           <section class="prompt-button-container">
             <section class="prompt-button-wrapper prompt-background">
