@@ -135,12 +135,16 @@ const domUpdates = {
     scrollSection.innerHTML = '';
     scrollSection.innerHTML +=
       `<button class="panel no-results" role="listitem">
-        <p class="panel-title">No available rooms found.</h2>
+        <p class="panel-title">No available rooms found.</p>
       </button>`;
   },
   displayErrorMessage(error) {
+    toggleClass([buttonDashboard], 'hidden', true);
     changeInnerText(prompt, `${error.message}`);
-    generateNoResultsPanel();
+    domUpdates.generateNoResultsPanel();
+    let noResultsPanel = document.querySelector('.no-results');
+    noResultsPanel.innerHTML =
+      '<p class="panel-title">Unable to connect database server.</p>';
   },
   displayConfirmBookingPrompt(event) {
     if (event.target.classList.contains('available-room')) {
