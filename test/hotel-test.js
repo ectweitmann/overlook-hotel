@@ -72,7 +72,7 @@ describe('Hotel', () => {
       hotel.determineAvailableRooms('2022/04/22');
       let filteredListOfAvailableRooms = hotel.filterByRoomType('suite');
 
-      expect(filteredListOfAvailableRooms).to.deep.equal([roomTestData.rooms[1]]);
+      expect(hotel.availableRooms).to.deep.equal([roomTestData.rooms[1]]);
     });
 
     it('should be able to determine the percentage of rooms occupied presently', () => {
