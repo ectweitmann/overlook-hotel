@@ -7,12 +7,11 @@ import './images/turing-logo.png'
 import './images/booking-image.png'
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween'
-dayjs.extend(isBetween);
-import Room from '../src/classes/Room';
 import Booking from '../src/classes/Booking';
 import Hotel from '../src/classes/Hotel';
 import Customer from '../src/classes/Customer';
 
+dayjs.extend(isBetween);
 let currentCustomer;
 let hotel;
 let today = dayjs().format('YYYY/MM/DD');
@@ -31,12 +30,8 @@ const createHotel = (operationalInfo) => {
   );
 }
 
-const getRandomCustomerID = () => {
-  return Math.floor(Math.random() * 50);
-}
-
 const checkResponse = (response) => {
-  if(!response.ok) {
+  if (!response.ok) {
     console.log(response);
     throw new Error(`${response.status} ${response.statusText}`);
   } else {
@@ -58,7 +53,7 @@ const getCustomerInfo = (customer) => {
   return currentCustomer;
 }
 
-const aggregateCustomerData = (customer) => {
+const aggregateCustomerData = () => {
   currentCustomer.getBookings(hotel);
   currentCustomer.determineTotalCost(hotel);
   capitalizeRoomTypes(currentCustomer.bookings);
@@ -123,7 +118,7 @@ const addBooking = (event) => {
 }
 
 const updateDataModel = () => {
-  aggregateCustomerData(currentCustomer);
+  aggregateCustomerData();
   aggregateAvailableRooms(dayjs(calendar.value).format('YYYY/MM/DD'));
 }
 
@@ -161,7 +156,7 @@ scrollSection.addEventListener('click', (e) => {
 });
 
 window.addEventListener('click', (e) => {
-  domUpdates.displayConfirmBookingPrompt(event);
+  domUpdates.displayConfirmBookingPrompt(e);
 });
 
 buttonWrapper.addEventListener('click', (e) => {

@@ -12,7 +12,6 @@ const panelTitle = document.querySelector('#panelTitle');
 const buttonSearchRooms = document.querySelector('#buttonSearchRooms');
 
 const loginView = document.querySelector('#loginView');
-const loginForm = document.querySelector('#loginForm');
 const usernameWrapper = document.querySelector('#usernameWrapper');
 const username = document.querySelector('#username');
 const passwordWrapper = document.querySelector('#passwordWrapper');
@@ -189,7 +188,7 @@ const domUpdates = {
   },
   verifyFormInput(hotel) {
     let inputElement = usernameWrapper.classList.contains('hidden') ? password : username;
-      if (inputElement.value.slice(0, 8) === 'customer' && hotel.guests.some(guest => `${guest.id}` === inputElement.value.slice(8))) {
+        if (inputElement.value.slice(0, 8) === 'customer' && hotel.guests.some(guest => `${guest.id}` === inputElement.value.slice(8))) {
         toggleClass([usernameWrapper, passwordWrapper], 'hidden');
         changeInnerText(loginErrorMsg, '');
         inputElement = password;
