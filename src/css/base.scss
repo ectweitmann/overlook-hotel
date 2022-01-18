@@ -35,8 +35,8 @@ a {
 h2,
 a,
 .book-now,
-.confirm-booking
- {
+.confirm-booking,
+.decline-booking {
   font-size: xx-large;
 }
 
@@ -121,8 +121,8 @@ main {
   &:focus {
     outline-color: $accent-color;
     outline-offset: 1px;
-    outline-width: 3px;
-    outline-style: solid;
+    outline-width: 5px;
+    outline-style: dotted;
   }
 }
 
@@ -287,8 +287,14 @@ span {
   text-decoration-color: $accent-color;
 }
 
+.button-wrapper {
+  @include flexBox(row, space-evenly, center);
+  @include dimensions(80px, 100%);
+}
+
 .book-now,
-.confirm-booking {
+.confirm-booking,
+.decline-booking {
   @include dimensions(80px, 280px);
   @include borderRadius($radius-pixels);
   background: $accent-color;
@@ -312,6 +318,11 @@ span {
   }
 }
 
+.confirm-booking,
+.decline-booking {
+  @include dimensions(80px, 200px)
+}
+
 .focused {
   outline-color: $accent-color;
   outline-offset: 1px;
@@ -324,6 +335,20 @@ span {
 
   &:hover {
     border: 3px solid red;
+  }
+}
+
+.not-clickable {
+  pointer-events: none;
+}
+
+.disabled {
+  pointer-events: none;
+  color:#696969;
+  border-color: #696969;
+
+  &:hover {
+    border-color: #696969;
   }
 }
 
