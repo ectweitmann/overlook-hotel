@@ -16,6 +16,7 @@ import Customer from '../src/classes/Customer';
 let currentCustomer;
 let hotel;
 let today = dayjs().format('YYYY/MM/DD');
+let selectedRoom = null;
 
 Promise.all([apiCall.getRooms(), apiCall.getBookings(), apiCall.getCustomers()])
   .then(data => createHotel(data))
@@ -105,6 +106,12 @@ const setUpApplication = (event) => {
   displayCustomerInfo();
 }
 
+const determineSelectedRoom = (event) => {
+  if (event.target.classList.contains('available-room')) {
+    selectedRoom = event.target.id;
+  }
+}
+
 window.addEventListener('load', setUpApplication);
 
 navDashboard.addEventListener('click', changePages);
@@ -116,3 +123,13 @@ buttonDashboard.addEventListener('click', changePages);
 buttonSearchRooms.addEventListener('click', (e) => {
   updateAvailableRoomsList(e);
 });
+
+scrollSection.addEventListener('click', (e) => {
+  determineSelectedRoom(e);
+});
+
+window.addEventListener('click', (e) => {
+  domUpdates.displayConfirmBookingPrompt(event);
+});
+
+// buttonConfirmBooking.addEventListener('click', currentCustomer.bookRoom(selectedRoom, ))
