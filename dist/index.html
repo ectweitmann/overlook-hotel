@@ -10,27 +10,28 @@
     <title>Overlook Hotel</title>
   </head>
   <body>
-    <section class="login hidden">
+    <section class="login" id="loginView">
       <h1>Overlook Hotel</h1>
       <section class="login-container">
         <form class="login-wrapper">
           <h2 class="login-text">Please Login</h2>
-          <section class="login-input-wrapper">
-            <label for>Username</label>
-            <input type="text" name="username" placeholder="Enter username here" required>
+          <section class="login-input-wrapper" id="usernameWrapper">
+            <label class="required" for>Username</label>
+            <input type="text" name="username" placeholder="Enter username here" id="username">
           </section>
-          <section class="login-input-wrapper">
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Enter password here" required>
+          <section class="login-input-wrapper hidden" id='passwordWrapper'>
+            <label class="required">Password</label>
+            <input type="password" name="password" placeholder="Enter password here" id="password">
           </section>
-          <button class="button-submit" type="button">Submit</button>
+          <p class='error-message' id="loginErrorMsg"></p>
+          <button type="button" class="button-submit" id="buttonSubmit">Submit</button>
         </form>
       </section>
     </section>
-    <header class="">
+    <header class="hidden" id="header">
       <h1>Overlook Hotel</h1>
     </header>
-    <main class="">
+    <main class="hidden" id="main">
       <section class="main-column-left">
         <h2 id="listTitle">Your Bookings</h2>
         <section class="your-bookings-container" id="scrollSection" role="list" aria-live="polite">
