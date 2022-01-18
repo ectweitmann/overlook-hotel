@@ -400,6 +400,11 @@ span {
   }
 }
 
+.required::after {
+  content: '*';
+  color: red;
+}
+
 .hidden {
   display: none;
 }
