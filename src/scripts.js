@@ -21,7 +21,7 @@ let selectedRoom = null;
 Promise.all([apiCall.getRooms(), apiCall.getBookings(), apiCall.getCustomers()])
   .then(responses => Promise.all(responses.map(response => checkResponse(response))))
   .then(data => createHotel(data))
-  .catch(error => console.log(error));
+  .catch(error => domUpdates.displayErrorMessage(error));
 
 const createHotel = (operationalInfo) => {
   hotel = new Hotel(
@@ -37,7 +37,8 @@ const getRandomCustomerID = () => {
 
 const checkResponse = (response) => {
   if(!response.ok) {
-    throw new Error(response.status + ' Unable to complete request. Please make sure the submitted input is valid');
+    console.log(response);
+    throw new Error(`${response.status} ${response.statusText}`);
   } else {
     return response.json();
   }
@@ -48,31 +49,30 @@ const displayCustomerInfo = () => {
     .then(response => checkResponse(response))
     .then(customer => getCustomerInfo(customer))
     .then(customerInfo => domUpdates.generateCustomerDashboard(customerInfo))
-    .catch(error => console.log(error));
+    .catch(error => domUpdates.displayErrorMessage(error));
 }
 
 const getCustomerInfo = (customer) => {
   currentCustomer = new Customer(customer);
-  currentCustomer.getBookings(hotel);
-  currentCustomer.determineTotalCost(hotel);
-  capitalizeRoomTypes(currentCustomer.bookings);
+  aggregateCustomerData(currentCustomer);
   return currentCustomer;
 }
 
+const aggregateCustomerData = (customer) => {
+  currentCustomer.getBookings(hotel);
+  currentCustomer.determineTotalCost(hotel);
+  capitalizeRoomTypes(currentCustomer.bookings);
+}
+
 const updateAvailableRoomsList = () => {
-  if (!dayjs(calendar.value).isBetween(calendar.min, calendar.max, null, [])) {
-    return domUpdates.showInvalidDateErrorMessages();
-  } else if (dropDown.value === '' || dropDown.value === 'any') {
-    const selectedDate = dayjs(calendar.value).format('YYYY/MM/DD');
-    hotel.determineAvailableRooms(selectedDate);
-    capitalizeRoomTypes(hotel.availableRooms);
-    domUpdates.generateAvailableRooms(hotel);
+  const selectDate = dayjs(calendar.value).format('YYYY/MM/DD');
+  if (!dayjs(calendar.value).isBetween(calendar.min, calendar.max, null, []) || calendar.value === '') {
+    return domUpdates.showInvalidDateErrorMessages(calendar.value, today);
+  }
+  if (dropDown.value === '' || dropDown.value === 'any') {
+    aggregateAvailableRooms(selectDate);
   } else {
-    const selectedDate = dayjs(calendar.value).format('YYYY/MM/DD');
-    hotel.determineAvailableRooms(selectedDate);
-    hotel.filterByRoomType(dropDown.value);
-    capitalizeRoomTypes(hotel.availableRooms);
-    domUpdates.generateAvailableRooms(hotel);
+    aggregateAvailableRooms(selectDate, dropDown.value);
   }
 }
 
@@ -86,9 +86,8 @@ const capitalizeRoomTypes = (roomList) => {
 
 const changePages = (event) => {
   if (event.target.id === 'navBooking' || event.target.id === 'buttonDashboard') {
-    hotel.determineAvailableRooms(today);
-    capitalizeRoomTypes(hotel.availableRooms);
-    domUpdates.displayBookingsPage(hotel);
+    domUpdates.displayBookingsPage();
+    aggregateAvailableRooms(today);
   } else {
     domUpdates.displayDashboard(currentCustomer);
     setDefaultInputValues();
@@ -114,7 +113,6 @@ const determineSelectedRoom = (event) => {
 }
 
 const addBooking = (event) => {
-  console.log(hotel.bookedRooms);
   if (event.target.id === 'buttonConfirmBooking') {
     let bookingDate = dayjs(calendar.value).format('YYYY/MM/DD');
     apiCall.addNewBooking(currentCustomer.bookRoom(selectedRoom, bookingDate))
@@ -122,13 +120,23 @@ const addBooking = (event) => {
       .then(data => {
         hotel.bookedRooms.push(new Booking(data.newBooking))
       })
-      .catch(error => console.log(error))
+      .catch(error => domUpdates.displayErrorMessage(error))
       .finally(() => {
-        hotel.determineAvailableRooms(dayjs(calendar.value).format('YYYY/MM/DD'));
-        capitalizeRoomTypes(hotel.availableRooms);
-        domUpdates.generateAvailableRooms(hotel);
+        updateDataModel();
       });
   }
+}
+
+const updateDataModel = () => {
+  aggregateCustomerData(currentCustomer);
+  aggregateAvailableRooms(dayjs(calendar.value).format('YYYY/MM/DD'));
+}
+
+const aggregateAvailableRooms = (date, roomType) => {
+  hotel.determineAvailableRooms(date);
+  roomType && hotel.filterByRoomType(roomType);
+  capitalizeRoomTypes(hotel.availableRooms);
+  domUpdates.generateAvailableRooms(hotel);
 }
 
 window.addEventListener('load', setUpApplication);
