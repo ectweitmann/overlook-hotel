@@ -30,7 +30,7 @@ class Hotel {
   }
 
   filterByRoomType(roomType) {
-    return this.availableRooms.filter(room => room.roomType === roomType);
+    this.availableRooms = this.availableRooms.filter(room => room.roomType === roomType);
   }
 
   determineOccupancy(date) {

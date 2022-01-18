@@ -28,18 +28,17 @@ h1 {
 
 h1,
 h2,
-a {
+.link {
   color: $main-font-color;
 }
 
 h2,
-a,
+.link,
 .book-now,
-.confirm-booking
- {
+.confirm-booking,
+.decline-booking {
   font-size: xx-large;
 }
-
 
 main {
   @include flexBox(row, space-evenly, center);
@@ -68,18 +67,35 @@ main {
 
 .your-bookings-container {
   position: relative;
-  @include flexBox(column, none, none);
+  @include flexBox(column, none, center);
   @include dimensions(92%, 100%);
   overflow-y: scroll;
-  transform: translateY(10px);
+  transform: translateY(6px);
+  padding-top: 4px;
 }
 
 .panel {
   @include flexBox(row, space-between, center);
-  @include dimensions(30%, none);
+  @include dimensions(30%, 98%);
   @include borderRadius($radius-pixels);
   background: $section-background-color;
   margin-bottom: 3%;
+}
+
+.no-results {
+  justify-content: center;
+}
+
+.booked-rooms {
+  cursor: default;
+  pointer-events: none;
+
+  &:focus {
+    outline-color: $accent-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
+  }
 }
 
 .booking-image {
@@ -89,8 +105,9 @@ main {
 }
 
 .booking-info {
-  @include flexBox(column, space-between, none);
-  @include dimensions(25%, 95%);
+  @include flexBox(column, space-between, flex-start);
+  @include dimensions(30%, 95%);
+  font-size: medium;
 }
 
 .panel-right-side {
@@ -111,13 +128,17 @@ main {
 .available-room {
 
   &:hover {
-    border-bottom: 5px solid $accent-color;
+    outline-color: $accent-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
   }
 
   &:focus {
     outline-color: $accent-color;
+    outline-offset: 1px;
     outline-width: 5px;
-    outline-style: solid;
+    outline-style: dotted;
   }
 }
 
@@ -144,9 +165,11 @@ li::before {
 }
 
 nav {
-  @include flexBox(row, flex-end, none);
+  @include flexBox(row, flex-end, center);
+  @include dimensions(34px, none);
 
   .link {
+    background-color: transparent;
     text-align: right;
     cursor: pointer;
   }
@@ -167,7 +190,7 @@ nav {
 .main-column-right-sections-container {
   @include flexBox(column, space-between, none);
   @include dimensions(100%, none);
-  padding-top: 10px;
+  padding-top: 8px;
 }
 
 .cost-info-container {
@@ -177,14 +200,14 @@ nav {
   box-sizing: border-box;
   padding: 4%;
   background: $section-background-color;
+}
 
-  .cost-wrapper {
-    @include flexBox(row, space-between, none);
-  }
+.cost-wrapper {
+  @include flexBox(row, space-between, none);
+}
 
-  .input-wrapper {
-    @include flexBox(row, space-around, none);
-  }
+.input-wrapper {
+  @include flexBox(row, space-around, none);
 }
 
 .cost-label {
@@ -201,13 +224,19 @@ nav {
   @include flexBox(column, none, none);
 }
 
+label {
+  font-size: small;
+  padding-left: 3px;
+  padding-bottom: 3px;
+}
+
 .input-date,
-.input-room-type {
-  @include dimensions(40px, 250px);
+.input-room-type,
+.search-rooms {
   @include borderRadius($radius-pixels);
-  border: 1px solid;
+  border: 1px solid black;
   text-align: center;
-  font-size: large;
+  font-size: medium;
   cursor: pointer;
 
   &:hover {
@@ -215,18 +244,38 @@ nav {
   }
 }
 
+.input-date {
+  @include dimensions(41px, 155px);
+}
+
 .input-room-type {
+  @include dimensions(44px, 200px);
   height: 44px;
+}
+
+.search-rooms {
+  @include dimensions(44px, 150px);
+  @include borderRadius($radius-pixels);
+  transform: translateY(16px);
+  background: $section-background-color;
+  color: black;
+
+  &:hover {
+    background-color: $accent-color;
+    border: 1px solid black;
+    color: $main-font-color;
+    text-shadow: $shadow;
+  }
 }
 
 .prompt-button-container {
   @include flexBox(column, center, center);
   @include dimensions(65%, 100%);
+}
 
-  .prompt-button-wrapper {
-    @include flexBox(column, space-evenly, center);
-    @include dimensions(100%, 100%);
-  }
+.prompt-button-wrapper {
+  @include flexBox(column, space-evenly, center);
+  @include dimensions(100%, 100%);
 }
 
 .prompt-background {
@@ -238,7 +287,7 @@ nav {
 .greeting,
 .prompt {
   color: $main-font-color;
-  text-shadow: $shadow;
+  text-shadow: -3px -2px 0px black;
   text-align: center;
   font-size: 50px;
 }
@@ -256,8 +305,14 @@ span {
   text-decoration-color: $accent-color;
 }
 
+.button-wrapper {
+  @include flexBox(row, space-evenly, center);
+  @include dimensions(80px, 100%);
+}
+
 .book-now,
-.confirm-booking {
+.confirm-booking,
+.decline-booking {
   @include dimensions(80px, 280px);
   @include borderRadius($radius-pixels);
   background: $accent-color;
@@ -267,11 +322,54 @@ span {
   text-shadow: $shadow;
 
   &:hover {
-    border: 3px solid white;
-    transform: scale(1.01);
+    outline-color: $section-background-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
+  }
+
+  &:focus {
+    outline-color: $section-background-color;
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: solid;
+  }
+}
+
+.confirm-booking,
+.decline-booking {
+  @include dimensions(80px, 200px)
+}
+
+.focused {
+  outline-color: $accent-color;
+  outline-offset: 1px;
+  outline-width: 3px;
+  outline-style: solid;
+}
+
+.invalid {
+  border: 3px solid red;
+
+  &:hover {
+    border: 3px solid red;
+  }
+}
+
+.not-clickable {
+  pointer-events: none;
+}
+
+.disabled {
+  pointer-events: none;
+  color:#696969;
+  border-color: #696969;
+
+  &:hover {
+    border-color: #696969;
   }
 }
 
 .hidden {
-  display: none !important;
+  display: none;
 }
