@@ -19,6 +19,7 @@ let today = dayjs().format('YYYY/MM/DD');
 let selectedRoom = null;
 
 Promise.all([apiCall.getRooms(), apiCall.getBookings(), apiCall.getCustomers()])
+  .then(responses => Promise.all(responses.map(response => checkResponse(response))))
   .then(data => createHotel(data))
   .catch(error => console.log(error));
 
@@ -36,7 +37,7 @@ const getRandomCustomerID = () => {
 
 const checkResponse = (response) => {
   if(!response.ok) {
-    throw new Error('Unable to complete request. Please make sure the submitted input is valid');
+    throw new Error(response.status + ' Unable to complete request. Please make sure the submitted input is valid');
   } else {
     return response.json();
   }
@@ -86,8 +87,8 @@ const capitalizeRoomTypes = (roomList) => {
 const changePages = (event) => {
   if (event.target.id === 'navBooking' || event.target.id === 'buttonDashboard') {
     hotel.determineAvailableRooms(today);
-    capitalizeRoomTypes(hotel.availableRooms)
-    domUpdates.displayBookingsPage(hotel)
+    capitalizeRoomTypes(hotel.availableRooms);
+    domUpdates.displayBookingsPage(hotel);
   } else {
     domUpdates.displayDashboard(currentCustomer);
     setDefaultInputValues();
@@ -112,6 +113,24 @@ const determineSelectedRoom = (event) => {
   }
 }
 
+const addBooking = (event) => {
+  console.log(hotel.bookedRooms);
+  if (event.target.id === 'buttonConfirmBooking') {
+    let bookingDate = dayjs(calendar.value).format('YYYY/MM/DD');
+    apiCall.addNewBooking(currentCustomer.bookRoom(selectedRoom, bookingDate))
+      .then(response => checkResponse(response))
+      .then(data => {
+        hotel.bookedRooms.push(new Booking(data.newBooking))
+      })
+      .catch(error => console.log(error))
+      .finally(() => {
+        hotel.determineAvailableRooms(dayjs(calendar.value).format('YYYY/MM/DD'));
+        capitalizeRoomTypes(hotel.availableRooms);
+        domUpdates.generateAvailableRooms(hotel);
+      });
+  }
+}
+
 window.addEventListener('load', setUpApplication);
 
 navDashboard.addEventListener('click', changePages);
@@ -132,4 +151,6 @@ window.addEventListener('click', (e) => {
   domUpdates.displayConfirmBookingPrompt(event);
 });
 
-// buttonConfirmBooking.addEventListener('click', currentCustomer.bookRoom(selectedRoom, ))
+buttonWrapper.addEventListener('click', (e) => {
+  addBooking(e);
+});
