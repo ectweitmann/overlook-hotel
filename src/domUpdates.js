@@ -46,18 +46,18 @@ const domUpdates = {
     toggleAttribute(navBooking, 'aria-disabled', false);
     toggleAttribute(navDashboard, 'aria-disabled', true);
   },
-  displayBookingsPage(hotel) {
+  displayBookingsPage() {
     domUpdates.changePageDisplay();
-    domUpdates.generateAvailableRooms(hotel);
     toggleAttribute(scrollSection, 'aria-live', 'polite');
     toggleAttribute(navBooking, 'aria-disabled', true);
     toggleAttribute(navDashboard, 'aria-disabled', false);
     highlightError(calendar, false);
   },
-  showInvalidDateErrorMessages() {
+  showInvalidDateErrorMessages(invalidDate, today) {
     domUpdates.generateNoResultsPanel();
-    changeInnerText(prompt, 'Check-in dates are limited to between today and Dec. 31, 2023');
+    changeInnerText(prompt, `Check-in dates are limited to between ${dayjs(today).format('MMM. DD, YYYY')} and Dec. 31, 2023`);
     highlightError(calendar, true);
+    invalidDate === '' && changeInnerText(prompt, 'A check-in date must be entered to initiate a search.');
   },
   generateCustomerDashboard(customer) {
     scrollSection.innerHTML = '';
@@ -69,7 +69,7 @@ const domUpdates = {
             <p class="panel-title">${booking.roomType}</p>
             <section class="booking-info">
               <p>Room: ${booking.roomNumber}</p>
-              <p>${dayjs(booking.date).format('MMM DD, YYYY')}</p>
+              <p>${dayjs(booking.date).format('MMM. DD, YYYY')}</p>
             </section>
           </section>
         </button>`;
@@ -81,7 +81,7 @@ const domUpdates = {
     if (!hotel.availableRooms.length) {
       calendar.classList.contains('invalid') && highlightError(calendar, false);
       domUpdates.generateNoResultsPanel();
-      changeInnerText(prompt, 'We are so sorry, no rooms are available that fit your search criteria! Please try a new search!')
+      changeInnerText(prompt, 'We are so sorry, no rooms are available that fit that search criteria! Please try a new search!')
       return;
     }
     scrollSection.innerHTML = '';
@@ -108,7 +108,7 @@ const domUpdates = {
           </section>
         </button>`;
     });
-    changeInnerText(prompt, 'Select a room you\'d like to book.');
+    changeInnerText(prompt, 'Select the room you\'d like to book.');
     highlightError(calendar, false);
   },
   changePageDisplay() {
@@ -120,10 +120,11 @@ const domUpdates = {
     ], 'hidden');
     highlightError(calendar, false);
     toggleClass([navDashboard, navBooking], 'current-view');
+    domUpdates.toggleLinkState([navDashboard, navBooking]);
     if (navBooking.classList.contains('current-view')) {
       changeInnerText(listTitle, 'Available Rooms');
       changeInnerText(panelTitle, 'Search Rooms');
-      changeInnerText(prompt, 'Select a room you\'d like to book.');
+      changeInnerText(prompt, 'Select the room you\'d like to book.');
     } else {
       changeInnerText(listTitle, 'Your Bookings');
       changeInnerText(panelTitle, 'Price Summary');
@@ -136,6 +137,10 @@ const domUpdates = {
       `<button class="panel no-results" role="listitem">
         <p class="panel-title">No available rooms found.</h2>
       </button>`;
+  },
+  displayErrorMessage(error) {
+    changeInnerText(prompt, `${error.message}`);
+    generateNoResultsPanel();
   },
   displayConfirmBookingPrompt(event) {
     if (event.target.classList.contains('available-room')) {
@@ -161,6 +166,11 @@ const domUpdates = {
       buttonSearchRooms.disabled = false;
       toggleClass([calendar, dropDown, buttonSearchRooms], 'disabled', false);
     }
+  },
+  toggleLinkState(links) {
+    links.forEach(link => {
+      link.classList.contains('current-view') ? link.disabled = true : link.disabled = false;
+    });
   }
 };
 
