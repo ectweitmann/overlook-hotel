@@ -42,6 +42,7 @@ describe('Hotel', () => {
     it('should have a list of booked rooms', () => {
       expect(hotel.bookedRooms).to.be.an('Array');
       expect(hotel.bookedRooms.length).to.deep.equal(5);
+      expect(hotel.bookedRooms[0]).to.be.an.instanceof(Booking);
     });
 
     it('should begin with no available rooms', () => {
@@ -70,9 +71,8 @@ describe('Hotel', () => {
 
     it('should be able to filter available rooms by room type', () => {
       hotel.determineAvailableRooms('2022/04/22');
-      let filteredListOfAvailableRooms = hotel.filterByRoomType('suite');
 
-      expect(filteredListOfAvailableRooms).to.deep.equal([roomTestData.rooms[1]]);
+      expect(hotel.availableRooms).to.deep.equal([roomTestData.rooms[1]]);
     });
 
     it('should be able to determine the percentage of rooms occupied presently', () => {

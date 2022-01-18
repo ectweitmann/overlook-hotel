@@ -2,8 +2,6 @@ import chai from 'chai';
 const expect = chai.expect;
 import Customer from '../src/classes/Customer';
 import Hotel from '../src/classes/Hotel';
-import Room from '../src/classes/Room';
-import Booking from '../src/classes/Booking';
 import customerTestData from '../src/testing-data/customer-test-data';
 import bookingTestData from '../src/testing-data/booking-test-data';
 import roomTestData from '../src/testing-data/room-test-data';
@@ -41,7 +39,7 @@ describe('Customer', () => {
       expect(customer.name).to.deep.equal('Leatha Ullrich');
     });
 
-    it('should keep track of its bookings', () => {
+    it('should have a way to keep track of its bookings', () => {
       expect(customer.bookings).to.be.an('Array');
     });
 
@@ -74,10 +72,20 @@ describe('Customer', () => {
       ]);
     });
 
+    it('should be able to aggregate pertinent information to book a room', () => {
+      let booking = customer.bookRoom(2, "2022/04/22");
+
+      expect(booking).to.deep.equal({
+        userID: 1,
+        date: "2022/04/22",
+        roomNumber: 2
+      });
+    });
+
     it('should be able to get the total cost of their bookings', () => {
       customer.determineTotalCost(hotel);
 
-      expect(customer.totalCost).to.deep.equal(817.55);
+      expect(customer.totalCost).to.deep.equal('817.55');
     });
   });
 });
