@@ -12,11 +12,13 @@ const buttonSearchRooms = document.querySelector('#buttonSearchRooms');
 const navDashboard = document.querySelector('#navDashboard');
 const navBooking = document.querySelector('#navBooking');
 const calendar = document.querySelector('#calendar');
-let dropDownRoomType = document.querySelector('#dropDown');
+const dropDownRoomType = document.querySelector('#dropDown');
+const spanRoomNum = document.querySelector('#spanRoomNum')
 
 const bookingInputFields = document.querySelector('#bookingInputFields');
 const dashboardCost = document.querySelector('#dashboardCost');
 const buttonDashboard = document.querySelector('#buttonDashboard');
+const buttonWrapper = document.querySelector('#buttonWrapper');
 
 let dropDown = dropDownRoomType; // Unexplainable bug with dropDownRoomType
 
@@ -84,9 +86,9 @@ const domUpdates = {
     scrollSection.innerHTML = '';
     hotel.availableRooms.forEach(room => {
       scrollSection.innerHTML +=
-        `<button class="panel available-room" role="listitem">
-          <img class="booking-image" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
-          <section class="panel-right-side">
+        `<button class="panel available-room" id="${room.number}" role="listitem">
+          <img class="booking-image not-clickable" src="./images/booking-image.png" alt="Snow covered Overlook Hotel">
+          <section class="panel-right-side not-clickable">
             <p class="panel-title">${room.roomType}</p>
             <section class="panel-right-bottom">
               <section class="room-amenities">
@@ -133,6 +135,31 @@ const domUpdates = {
       `<button class="panel no-results" role="listitem">
         <p class="panel-title">No available rooms found.</h2>
       </button>`;
+  },
+  displayConfirmBookingPrompt(event) {
+    if (event.target.classList.contains('available-room')) {
+      toggleClass([promptConfirm, buttonWrapper], 'hidden', false);
+      toggleClass([prompt], 'hidden', true);
+      changeInnerText(spanRoomNum, `Room ${event.target.id}`);
+      domUpdates.setInputsState();
+    } else {
+      toggleClass([promptConfirm, buttonWrapper], 'hidden', true);
+      toggleClass([prompt], 'hidden', false);
+      domUpdates.setInputsState();
+    }
+  },
+  setInputsState() {
+    if (document.activeElement.classList.contains('available-room')) {
+      calendar.disabled = true;
+      dropDown.disabled = true;
+      buttonSearchRooms.disabled = true;
+      toggleClass([calendar, dropDown, buttonSearchRooms], 'disabled', true);
+    } else {
+      calendar.disabled = false;
+      dropDown.disabled = false;
+      buttonSearchRooms.disabled = false;
+      toggleClass([calendar, dropDown, buttonSearchRooms], 'disabled', false);
+    }
   }
 };
 
