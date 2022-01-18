@@ -28,12 +28,12 @@ h1 {
 
 h1,
 h2,
-a {
+.link {
   color: $main-font-color;
 }
 
 h2,
-a,
+.link,
 .book-now,
 .confirm-booking,
 .decline-booking {
@@ -149,9 +149,11 @@ li::before {
 }
 
 nav {
-  @include flexBox(row, flex-end, none);
+  @include flexBox(row, flex-end, center);
+  @include dimensions(34px, none);
 
   .link {
+    background-color: transparent;
     text-align: right;
     cursor: pointer;
   }
@@ -172,7 +174,7 @@ nav {
 .main-column-right-sections-container {
   @include flexBox(column, space-between, none);
   @include dimensions(100%, none);
-  padding-top: 10px;
+  padding-top: 8px;
 }
 
 .cost-info-container {
