@@ -77,7 +77,7 @@ describe('Customer', () => {
     it('should be able to get the total cost of their bookings', () => {
       customer.determineTotalCost(hotel);
 
-      expect(customer.totalCost).to.deep.equal(817.55);
+      expect(customer.totalCost).to.deep.equal('817.55');
     });
   });
 });
