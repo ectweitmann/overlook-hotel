@@ -79,6 +79,7 @@ const domUpdates = {
   },
   generateAvailableRooms(hotel) {
     if (!hotel.availableRooms.length) {
+      calendar.classList.contains('invalid') && highlightError(calendar, false);
       domUpdates.generateNoResultsPanel();
       changeInnerText(prompt, 'We are so sorry, no rooms are available that fit your search criteria! Please try a new search!')
       return;
