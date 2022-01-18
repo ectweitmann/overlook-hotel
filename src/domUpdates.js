@@ -1,5 +1,7 @@
 import dayjs from 'dayjs';
 
+const header = document.querySelector('#header');
+const main = document.querySelector('#main');
 const scrollSection = document.querySelector('#scrollSection');
 const customerCost = document.querySelector('#customerCost');
 const prompt = document.querySelector('#prompt');
@@ -8,6 +10,15 @@ const customerGreeting = document.querySelector('#customerGreeting');
 const listTitle = document.querySelector('#listTitle');
 const panelTitle = document.querySelector('#panelTitle');
 const buttonSearchRooms = document.querySelector('#buttonSearchRooms');
+
+const loginView = document.querySelector('#loginView');
+const loginForm = document.querySelector('#loginForm');
+const usernameWrapper = document.querySelector('#usernameWrapper');
+const username = document.querySelector('#username');
+const passwordWrapper = document.querySelector('#passwordWrapper');
+const password = document.querySelector('#password');
+const loginErrorMsg = document.querySelector('#loginErrorMsg');
+const buttonSubmit = document.querySelector('#buttonSubmit');
 
 const navDashboard = document.querySelector('#navDashboard');
 const navBooking = document.querySelector('#navBooking');
@@ -175,6 +186,26 @@ const domUpdates = {
     links.forEach(link => {
       link.classList.contains('current-view') ? link.disabled = true : link.disabled = false;
     });
+  },
+  verifyFormInput(hotel) {
+    let inputElement = usernameWrapper.classList.contains('hidden') ? password : username;
+      if (inputElement.value.slice(0, 8) === 'customer' && hotel.guests.some(guest => `${guest.id}` === inputElement.value.slice(8))) {
+        toggleClass([usernameWrapper, passwordWrapper], 'hidden');
+        changeInnerText(loginErrorMsg, '');
+        inputElement = password;
+      } else if (inputElement.value === 'overlook2021') {
+        console.log('logged in successfully');
+        return true;
+      } else {
+        inputElement.value = '';
+        inputElement.placeholder = `Enter ${inputElement.id} here`;
+        highlightError(inputElement, true);
+        changeInnerText(loginErrorMsg, `${inputElement.id[0].toUpperCase() + inputElement.id.slice(1)} entered  is invalid.`);
+        return false;
+      }
+  },
+  hideLoginPage() {
+    toggleClass([loginView, header, main], 'hidden');
   }
 };
 
