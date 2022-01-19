@@ -10,18 +10,17 @@ button {
 }
 
 * {
-  font-family: $font !important;
+  font-family: $font;
 }
 
 body {
   @include flexBox(column, space-around, center);
   @include dimensions(100vh, 100%);
   background-image: url('../images/overlook-view.png');
-  background-size: $full100 $full100;
+  background-size: 100% 100%;
 }
 
 h1 {
-  font-family: $font;
   font-size: xxx-large;
   transform: translateY(10px);
 }
@@ -59,24 +58,20 @@ main {
   @include flexBox(row, center, center);
   @include dimensions(50%, 70%);
   @include borderRadius($radius-pixels);
+  @include outlineStyling($accent-color, -6px, medium, solid);
   background-color: $section-background-color;
   box-sizing: border-box;
   border: 2px solid black;
-  outline-color: $accent-color;
-  outline-style: solid;
-  outline-width: medium;
-  outline-offset: -6px;
   box-shadow: 0px 0px 10px black;
 }
 
 .login-wrapper {
   @include flexBox(column, space-around, center);
   @include dimensions(80%, 80%);
-  //border: 3px solid black;
 }
 
 .login-text {
-  color: black;
+  color: $secondary-font-color;
   font-weight: 400;
   transform: translateY(-10px);
 }
@@ -94,9 +89,9 @@ main {
 }
 
 .your-bookings-container {
-  position: relative;
   @include flexBox(column, none, center);
   @include dimensions(92%, 100%);
+  position: relative;
   overflow-y: scroll;
   transform: translateY(6px);
   padding-top: 4px;
@@ -119,10 +114,7 @@ main {
   pointer-events: none;
 
   &:focus {
-    outline-color: $accent-color;
-    outline-offset: 1px;
-    outline-width: 3px;
-    outline-style: solid;
+    @include outlineStyling($accent-color, 1px, 3px, solid);
   }
 }
 
@@ -155,18 +147,9 @@ main {
 
 .available-room {
 
-  &:hover {
-    outline-color: $accent-color;
-    outline-offset: 1px;
-    outline-width: 3px;
-    outline-style: solid;
-  }
-
+  &:hover,
   &:focus {
-    outline-color: $accent-color;
-    outline-offset: 1px;
-    outline-width: 5px;
-    outline-style: dotted;
+    @include outlineStyling($accent-color, 1px, 3px, solid);
   }
 }
 
@@ -200,6 +183,11 @@ nav {
     background-color: transparent;
     text-align: right;
     cursor: pointer;
+
+    &:focus {
+      @include underlineStyling();
+      outline: none;
+    }
   }
 
   .separator {
@@ -244,7 +232,7 @@ nav {
 
 .cost {
   font-size: xxx-large;
-  color: black;
+  color: $secondary-font-color;
 }
 
 .date-wrapper,
@@ -271,6 +259,11 @@ label {
   &:hover {
     border: 1px solid $accent-color;
   }
+
+  &:focus {
+    @include outlineStyling($accent-color, 0px, 1px, solid);
+    border: none;
+  }
 }
 
 .input-date {
@@ -279,7 +272,6 @@ label {
 
 .input-room-type {
   @include dimensions(44px, 200px);
-  height: 44px;
 }
 
 .search-rooms,
@@ -288,13 +280,13 @@ label {
   @include borderRadius($radius-pixels);
   transform: translateY(16px);
   background: $section-background-color;
-  color: black;
+  color: $secondary-font-color;
 
   &:hover {
     background-color: $accent-color;
     border: 1px solid black;
     color: $main-font-color;
-    text-shadow: $shadow;
+    text-shadow: $button-text-shadow;
   }
 }
 
@@ -331,8 +323,7 @@ label {
 }
 
 span {
-  text-decoration: underline;
-  text-decoration-color: $accent-color;
+  @include underlineStyling();
 }
 
 .button-wrapper {
@@ -349,33 +340,17 @@ span {
   border: none;
   color: $main-font-color;
   font-weight: 500;
-  text-shadow: $shadow;
+  text-shadow: $button-text-shadow;
 
-  &:hover {
-    outline-color: $section-background-color;
-    outline-offset: 1px;
-    outline-width: 3px;
-    outline-style: solid;
-  }
-
+  &:hover,
   &:focus {
-    outline-color: $section-background-color;
-    outline-offset: 1px;
-    outline-width: 3px;
-    outline-style: solid;
+    @include outlineStyling(white, 1px, 3px, solid);
   }
 }
 
 .confirm-booking,
 .decline-booking {
   @include dimensions(80px, 200px)
-}
-
-.focused {
-  outline-color: $accent-color;
-  outline-offset: 1px;
-  outline-width: 3px;
-  outline-style: solid;
 }
 
 .invalid {

@@ -193,7 +193,6 @@ const domUpdates = {
         changeInnerText(loginErrorMsg, '');
         inputElement = password;
       } else if (inputElement.value === 'overlook2021') {
-        console.log('logged in successfully');
         return true;
       } else {
         inputElement.value = '';

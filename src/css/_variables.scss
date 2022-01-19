@@ -1,7 +1,12 @@
-$full100: 100%;
+// Colors
 $section-background-color: white;
 $accent-color: #FFA726;
 $main-font-color: white;
-$font: 'Prompt', sans-serif;
+$secondary-font-color: black;
+
+// Font
+$font: 'Prompt', sans-serif !important;
+
+// Decoration
 $radius-pixels: 4px;
-$shadow: 0px 0px 5px black;
+$button-text-shadow: 0px 0px 5px black;
