@@ -71,6 +71,7 @@ describe('Hotel', () => {
 
     it('should be able to filter available rooms by room type', () => {
       hotel.determineAvailableRooms('2022/04/22');
+      hotel.filterByRoomType('suite');
 
       expect(hotel.availableRooms).to.deep.equal([roomTestData.rooms[1]]);
     });
