@@ -7,19 +7,23 @@ On page load the user is met with a login page, asking them to login.
 The login credentials for the customers are as follows:
 - Username: customer# (# = any number 1 through 50)
 - Password: overlook2021
-![Login Page](https://media.giphy.com/media/SLBzf6VBaZseUwOtXC/giphy.gif)
+
+![Login Page](https://media.giphy.com/media/TIw3yKUh7g2dFjRc2H/giphy.gif)
 
 Upon login the user is met with the dashboard page. Here they can find all their previous and upcoming bookings as well as the total cost of these bookings. From here they can navigate to the bookings page by clicking either the Book Now button or the 'Booking' link in the navigation bar in the top right corner.
-![Dashboard Page](https://media.giphy.com/media/8CrkUr49aMqwaOfBtq/giphy-downsized-large.gif)
+
+![Dashboard Page](https://media.giphy.com/media/j9FT6wvhUntrq0dtwf/giphy-downsized-large.gif)
 
 On the bookings page the user is met with all of today's available rooms. From here they can filter the list by their desired room type. If no rooms are available that match their search criteria the user will be notified and prompted to try a new search.
 ![Dashboard-Page Searching by Room Type](https://media.giphy.com/media/7C8zBJhhDmupateV7Y/giphy.gif)
 
 The user can click on any of the available rooms on the list at which point they'll be asked if they want to book this room. If they decline they can continue searching for a room to book. If they confirm the room will be removed from the list because it is now booked and therefore no longer available to book on the specified date.
-![Booking a Room](https://media.giphy.com/media/7AYemERKWAGQGkatY6/giphy.gif)
+
+![Booking a Room](https://media.giphy.com/media/7AYemERKWAGQGkatY6/giphy-downsized.gif)
 
 If the user returns to the dashboard page they will find that their list of bookings has been updated with the newest booking and their total cost has also increased. From here they are free to go back to the bookings page and repeat the process over again.
-![Show updated dashboard page](https://media.giphy.com/media/UQUKL59KChvXqg4Otr/giphy-downsized-large.gif)
+
+![Show updated dashboard page](https://media.giphy.com/media/UQUKL59KChvXqg4Otr/giphy-downsized.gif)
 
 ## Setup
 1. Fork the repo
@@ -49,7 +53,10 @@ Enter `control + c` in your terminal to stop the server at any time.
 ![Atom](https://img.shields.io/badge/Atom-%2366595C.svg?style=for-the-badge&logo=atom&logoColor=white)
 
 ## Future Features
-Implement Manager class functionality.
+1. Add a sorting feature for the 'Your Bookings' section on the customer dashboard.
+Would allow the user to filter their bookings by date.
+
+2. Implement Manager class functionality.
 A manager would have their own:
 - Login credentials and Dashboard page displaying:
   - Total rooms available today
