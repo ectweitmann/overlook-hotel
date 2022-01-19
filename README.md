@@ -15,6 +15,7 @@ Upon login the user is met with the dashboard page. Here they can find all their
 ![Dashboard Page](https://media.giphy.com/media/j9FT6wvhUntrq0dtwf/giphy-downsized-large.gif)
 
 On the bookings page the user is met with all of today's available rooms. From here they can filter the list by their desired room type. If no rooms are available that match their search criteria the user will be notified and prompted to try a new search.
+
 ![Dashboard-Page Searching by Room Type](https://media.giphy.com/media/7C8zBJhhDmupateV7Y/giphy.gif)
 
 The user can click on any of the available rooms on the list at which point they'll be asked if they want to book this room. If they decline they can continue searching for a room to book. If they confirm the room will be removed from the list because it is now booked and therefore no longer available to book on the specified date.
