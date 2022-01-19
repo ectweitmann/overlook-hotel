@@ -13,3 +13,15 @@
 @mixin borderRadius($pixels) {
   border-radius: $pixels
 }
+
+@mixin outlineStyling($color, $offset, $width, $style) {
+  outline-color: $color;
+  outline-offset: $offset;
+  outline-width: $width;
+  outline-style: $style;
+}
+
+@mixin underlineStyling() {
+  text-decoration: underline;
+  text-decoration-color: $accent-color;
+}
