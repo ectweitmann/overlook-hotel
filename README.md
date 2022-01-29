@@ -12,7 +12,7 @@ The login credentials for the customers are as follows:
 
 Upon login the user is met with the dashboard page. Here they can find all their previous and upcoming bookings as well as the total cost of these bookings. From here they can navigate to the bookings page by clicking either the Book Now button or the 'Booking' link in the navigation bar in the top right corner.
 
-![Dashboard Page](https://media.giphy.com/media/j9FT6wvhUntrq0dtwf/giphy-downsized-large.gif)
+![Dashboard Page](https://media.giphy.com/media/j9FT6wvhUntrq0dtwf/giphy-downsized.gif)
 
 On the bookings page the user is met with all of today's available rooms. From here they can filter the list by their desired room type. If no rooms are available that match their search criteria the user will be notified and prompted to try a new search.
 
