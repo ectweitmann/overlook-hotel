@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    <title>Overlook Hotel</title>
+  </head>
+  <body>
+    <section class="login" id="loginView">
+      <h1>Overlook Hotel</h1>
+      <section class="login-container">
+        <form class="login-wrapper">
+          <h2 class="login-text">Please Login</h2>
+          <section class="login-input-wrapper" id="usernameWrapper">
+            <label class="required" for>Username</label>
+            <input type="text" name="username" placeholder="Enter username here" id="username">
+          </section>
+          <section class="login-input-wrapper hidden" id='passwordWrapper'>
+            <label class="required">Password</label>
+            <input type="password" name="password" placeholder="Enter password here" id="password">
+          </section>
+          <p class='error-message' id="loginErrorMsg"></p>
+          <button type="button" class="button-submit" id="buttonSubmit">Submit</button>
+        </form>
+      </section>
+    </section>
+    <header class="hidden" id="header">
+      <h1>Overlook Hotel</h1>
+    </header>
+    <main class="hidden" id="main">
+      <section class="main-column-left">
+        <h2 id="listTitle">Your Bookings</h2>
+        <section class="your-bookings-container" id="scrollSection" role="list" aria-live="polite">
+        </section>
+      </section>
+      <section class="main-column-right">
+        <nav id="navBar">
+          <button class="link current-view" id="navDashboard" role="link" aria-disabled="true" aria-label="go to dashboard page" tabindex="0" disabled>Dashboard</button>
+          <h2 class="separator" role="separator"> | </h2>
+          <button class="link" id="navBooking" role="link" aria-disabled="false" aria-label="go to bookings page" tabindex="0">Bookings</button>
+        </nav>
+        <section class="main-column-right-sections-container">
+          <section class="cost-info-container">
+            <p class="section-title" id="panelTitle">Price Summary</p>
+            <section class="cost-wrapper " id="dashboardCost">
+              <p class="cost-label">Total Cost of Bookings</p>
+              <p class="cost" id="customerCost"></p>
+            </section>
+            <section class="input-wrapper hidden" id="bookingInputFields">
+              <section class="date-wrapper">
+                <label for="calendar">Check-in date:</label>
+                <input type="date" name="calendar" class="input-date" id="calendar">
+              </section>
+              <section class="dropdown-wrapper">
+                <label for="roomType">Filter by room type:</label>
+                <select name="roomTypes" class="input-room-type" id="dropDown">
+                  <option value="" disabled selected>--Select a room type--</option>
+                  <option value="Junior Suite">Junior Suite</option>
+                  <option value="Residential Suite">Residential Suite</option>
+                  <option value="Single Room">Single Room</option>
+                  <option value="Suite">Suite</option>
+                  <option value="any">Any room type</option>
+                </select>
+              </section>
+              <button type='button' class='search-rooms' id="buttonSearchRooms">Search Rooms</button>
+            </section>
+          </section>
+          <section class="prompt-button-container">
+            <section class="prompt-button-wrapper prompt-background">
+              <section id="promptSection" aria-live="polite">
+                <p class="greeting" id="customerGreeting"></p>
+                <p class="prompt" id="prompt">Plan your next trip:</p>
+                <p class="prompt hidden" id="promptConfirm">Would you like to book <span id="spanRoomNum">Room 27</span>?</p>
+              </section>
+              <button class="book-now" id="buttonDashboard" aria-label="go to bookings page">Book Now</button>
+              <section class="button-wrapper hidden" id="buttonWrapper">
+                <button class="confirm-booking" id="buttonConfirmBooking" aria-label="confirm booking for selected room">Confirm</button>
+                <button class="decline-booking" id="buttonDeclineBooking" aria-label="decline booking for selected room">Decline</button>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </main>
+    <script src="bundle.js"></script>
+  </body>
+</html>
